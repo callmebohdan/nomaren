@@ -36,12 +36,12 @@ cmake -G "MinGW Makefiles" -DCMAKE_PREFIX_PATH="%QT_PATH%" "%PROJECT_DIR%"
 echo Building the project...
 mingw32-make
 
-if exist "%BUILD_DIR%\src\nomarenCLI.exe" (
+if exist "%BUILD_DIR%\src\nomaren.exe" (
     echo Copying the application into the bin/ directory...
     mkdir "%BIN_DIR%"
-    copy "%BUILD_DIR%\src\nomarenCLI.exe" "%BIN_DIR%"
+    copy "%BUILD_DIR%\src\nomaren.exe" "%BIN_DIR%"
 ) else (
-    echo Error: nomarenCLI.exe was not created.
+    echo Error: nomaren.exe was not created.
 )
 
 endlocal
