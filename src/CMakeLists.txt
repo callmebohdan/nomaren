@@ -4,7 +4,7 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
-set(ASSET_FILES ../assets/nomaren.rc)
+set(ASSET_FILES ../assets/icon/nomaren.rc)
 set(HEADER_FILES mainwindow.hpp)
 set(SOURCE_FILES main.cpp mainwindow.cpp)
 set(UI_FILES mainwindow.ui)

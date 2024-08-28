@@ -40,3 +40,6 @@
 out/
 build/
 bin/
+
+# Visual C++ cache files
+*.aps
