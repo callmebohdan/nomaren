@@ -4,7 +4,6 @@
 #include <qlabel.h>
 #include <qmainwindow.h>
 #include <qstring.h>
-#include <qtconfigmacros.h>
 #include <qtmetamacros.h>
 #include <qwidget.h>
 

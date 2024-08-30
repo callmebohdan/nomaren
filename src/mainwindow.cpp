@@ -8,10 +8,9 @@
 #include <qnamespace.h>
 #include <qpixmap.h>
 #include <qstring.h>
-#include <qtypes.h>
 #include <qwidget.h>
 #include "mainwindow.hpp"
-#include "ui_MainWindow.h"
+#include "./ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget* parent)
 	: QMainWindow(parent)
