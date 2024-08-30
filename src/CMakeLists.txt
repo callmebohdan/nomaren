@@ -1,4 +1,4 @@
-﻿find_package(Qt6 REQUIRED COMPONENTS Widgets Gui Multimedia)
+﻿find_package(Qt6 REQUIRED COMPONENTS Gui Widgets)
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
@@ -11,6 +11,8 @@ set(UI_FILES mainwindow.ui)
 
 qt_add_executable(nomaren ${SOURCE_FILES} ${HEADER_FILES} ${UI_FILES} ${ASSET_FILES})
 
-target_link_libraries(nomaren PRIVATE Qt6::Gui Qt6::Widgets Qt6::Multimedia)
+target_link_libraries(nomaren PRIVATE Qt6::Gui Qt6::Widgets)
 
-set_target_properties(nomaren PROPERTIES WIN64_EXECUTABLE ON LINK_FLAGS "-mwindows")
+if (WIN32)
+    set_target_properties(nomaren PROPERTIES WIN64_EXECUTABLE ON LINK_FLAGS "-mwindows")
+endif()
