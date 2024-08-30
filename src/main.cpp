@@ -1,4 +1,5 @@
 #include <qapplication.h>
+#include <qfile.h>
 #include <qstring.h>
 #include "mainwindow.hpp"
 
@@ -6,17 +7,22 @@ int main(int argc, char* argv[])
 {
 	QApplication application(argc, argv);
 
-	QString imagePath;
+	QString mediaFilePath;
 	if (argc > 1) {
-		imagePath = argv[1];
+		mediaFilePath = argv[1];
 	}
 
 	MainWindow mainWindow;
 	mainWindow.show();
 
-	if (!imagePath.isEmpty()) {
-		mainWindow.displayImage(imagePath);
-		mainWindow.adjustSize();
+	if (!mediaFilePath.isEmpty()) {
+		if (QFile::exists(mediaFilePath)) {
+			mainWindow.ProcessFile(mediaFilePath);
+			mainWindow.adjustSize();
+		}
+		else {
+			qWarning() << "Media file path does not exist:" << mediaFilePath;
+		}
 	}
 
 	return application.exec();

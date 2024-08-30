@@ -20,7 +20,18 @@ public:
 	explicit MainWindow(QWidget* parent = nullptr);
 	~MainWindow();
 
-	void displayImage(const QString& filePath);
+	bool isImageFile(const QString& filePath);
+	bool isMusicFile(const QString& filePath);
+	bool isVideoFile(const QString& filePath);
+
+	void DisplayImage(const QString& filePath);
+	void DisplayMusic(const QString& filePath);
+	void DisplayVideo(const QString& filePath);
+
+	void ProcessFile(const QString& filePath);
+
+private slots:
+	void PositionChanged(qint64 position);
 
 private:
 	Ui::MainWindow* ui;
