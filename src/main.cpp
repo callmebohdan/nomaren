@@ -18,7 +18,6 @@ int main(int argc, char* argv[])
 	if (!mediaFilePath.isEmpty()) {
 		if (QFile::exists(mediaFilePath)) {
 			mainWindow.ProcessFile(mediaFilePath);
-			mainWindow.adjustSize();
 		}
 		else {
 			qWarning() << "Media file path does not exist:" << mediaFilePath;

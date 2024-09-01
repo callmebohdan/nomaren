@@ -1,10 +1,15 @@
 #ifndef MAINWINDOW_HPP
 #define MAINWINDOW_HPP
 
+#include <QAudioOutput>
+#include <QFile>
 #include <qlabel.h>
 #include <qmainwindow.h>
+#include <QMediaPlayer>
+#include <QStackedWidget>
 #include <qstring.h>
 #include <qtmetamacros.h>
+#include <QVideoWidget>
 #include <qwidget.h>
 
 QT_BEGIN_NAMESPACE
@@ -22,11 +27,9 @@ public:
 	bool isImageFile(const QString& filePath);
 	bool isMusicFile(const QString& filePath);
 	bool isVideoFile(const QString& filePath);
-
 	void DisplayImage(const QString& filePath);
 	void DisplayMusic(const QString& filePath);
 	void DisplayVideo(const QString& filePath);
-
 	void ProcessFile(const QString& filePath);
 
 private slots:
@@ -35,6 +38,10 @@ private slots:
 private:
 	Ui::MainWindow* ui;
 	QLabel* imageLabel;
+	QMediaPlayer *player;
+    QAudioOutput *audioOutput;
+    QVideoWidget *videoOutput;
+	QStackedWidget *stackedWidget;
 };
 
 #endif // MAINWINDOW_H

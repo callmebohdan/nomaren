@@ -1,13 +1,21 @@
+#include <QAudioDevice>
+#include <QAudioFormat>
+#include <QAudioOutput>
 #include <qcontainerfwd.h>
 #include <qfileinfo.h>
 #include <qimage.h>
 #include <qlabel.h>
 #include <qlogging.h>
 #include <qmainwindow.h>
+#include <QMediaDevices>
+#include <QMediaPlayer>
 #include <qmessagebox.h>
 #include <qnamespace.h>
 #include <qpixmap.h>
+#include <QStackedWidget>
 #include <qstring.h>
+#include <QVBoxLayout>
+#include <QVideoWidget>
 #include <qwidget.h>
 #include "mainwindow.hpp"
 #include "./ui_mainwindow.h"
@@ -16,15 +24,40 @@ MainWindow::MainWindow(QWidget* parent)
 	: QMainWindow(parent)
 	, ui(new Ui::MainWindow)
 	, imageLabel(new QLabel(this))
+    , player(new QMediaPlayer(this))
+    , audioOutput(new QAudioOutput(this))
+    , videoOutput(new QVideoWidget(this))
+    , stackedWidget(new QStackedWidget(this))
 {
 	ui->setupUi(this);
-	imageLabel->setAlignment(Qt::AlignCenter);
-	setCentralWidget(imageLabel);
+    
+    imageLabel->setAlignment(Qt::AlignCenter);
+    stackedWidget->addWidget(imageLabel);
+
+    stackedWidget->addWidget(videoOutput);
+    
+    setCentralWidget(stackedWidget);
+
+    QVBoxLayout* layout = new QVBoxLayout;
+    layout->addWidget(stackedWidget);
+    layout->setContentsMargins(0, 0, 0, 0);
+
+    QWidget* centralWidget = new QWidget(this);
+    centralWidget->setLayout(layout);
+    setCentralWidget(centralWidget);
+
+    player->setVideoOutput(videoOutput);
+    player->setAudioOutput(audioOutput);
 }
 
 MainWindow::~MainWindow()
 {
 	delete ui;
+    delete player;
+    delete audioOutput;
+    delete videoOutput;
+    delete imageLabel;
+    delete stackedWidget;
 }
 
 bool MainWindow::isImageFile(const QString& filePath) {
@@ -78,14 +111,24 @@ void MainWindow::DisplayImage(const QString& filePath) {
 	}
 
 	imageLabel->setPixmap(QPixmap::fromImage(image));
-
 	imageLabel->adjustSize();
+
+    stackedWidget->setCurrentWidget(imageLabel);
 }
 
 void MainWindow::DisplayMusic(const QString& filePath)
 {
+    player->setSource(QUrl::fromLocalFile(filePath));
+    player->play();
 }
 
 void MainWindow::DisplayVideo(const QString& filePath)
 {
+    stackedWidget->setCurrentWidget(videoOutput);
+
+    videoOutput->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    videoOutput->show();
+
+    player->setSource(QUrl::fromLocalFile(filePath));
+    player->play();
 }
