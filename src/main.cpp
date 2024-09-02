@@ -1,5 +1,6 @@
 #include <qapplication.h>
 #include <qfile.h>
+#include <qlogging.h>
 #include <qstring.h>
 #include "mainwindow.hpp"
 

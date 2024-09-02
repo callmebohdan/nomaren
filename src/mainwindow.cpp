@@ -1,63 +1,58 @@
-#include <QAudioDevice>
-#include <QAudioFormat>
-#include <QAudioOutput>
+#include <qboxlayout.h>
 #include <qcontainerfwd.h>
 #include <qfileinfo.h>
 #include <qimage.h>
 #include <qlabel.h>
 #include <qlogging.h>
 #include <qmainwindow.h>
-#include <QMediaDevices>
-#include <QMediaPlayer>
 #include <qmessagebox.h>
 #include <qnamespace.h>
 #include <qpixmap.h>
-#include <QStackedWidget>
+#include <qsizepolicy.h>
+#include <qstackedwidget.h>
 #include <qstring.h>
-#include <QVBoxLayout>
-#include <QVideoWidget>
+#include <qtypes.h>
+#include <qurl.h>
 #include <qwidget.h>
-#include "mainwindow.hpp"
 #include "./ui_mainwindow.h"
+#include "mainwindow.hpp"
+#include "qtmultimedia/qaudiooutput.h"
+#include "qtmultimedia/qmediaplayer.h"
+#include "qtmultimediawidgets/qvideowidget.h"
 
 MainWindow::MainWindow(QWidget* parent)
 	: QMainWindow(parent)
 	, ui(new Ui::MainWindow)
 	, imageLabel(new QLabel(this))
-    , player(new QMediaPlayer(this))
-    , audioOutput(new QAudioOutput(this))
-    , videoOutput(new QVideoWidget(this))
-    , stackedWidget(new QStackedWidget(this))
+	, player(new QMediaPlayer(this))
+	, audioOutput(new QAudioOutput(this))
+	, videoOutput(new QVideoWidget(this))
+	, stackedWidget(new QStackedWidget(this))
 {
 	ui->setupUi(this);
-    
-    imageLabel->setAlignment(Qt::AlignCenter);
-    stackedWidget->addWidget(imageLabel);
 
-    stackedWidget->addWidget(videoOutput);
-    
-    setCentralWidget(stackedWidget);
+	imageLabel->setAlignment(Qt::AlignCenter);
+	stackedWidget->addWidget(imageLabel);
 
-    QVBoxLayout* layout = new QVBoxLayout;
-    layout->addWidget(stackedWidget);
-    layout->setContentsMargins(0, 0, 0, 0);
+	stackedWidget->addWidget(videoOutput);
 
-    QWidget* centralWidget = new QWidget(this);
-    centralWidget->setLayout(layout);
-    setCentralWidget(centralWidget);
+	setCentralWidget(stackedWidget);
 
-    player->setVideoOutput(videoOutput);
-    player->setAudioOutput(audioOutput);
+	QVBoxLayout* layout = new QVBoxLayout;
+	layout->addWidget(stackedWidget);
+	layout->setContentsMargins(0, 0, 0, 0);
+
+	QWidget* centralWidget = new QWidget(this);
+	centralWidget->setLayout(layout);
+	setCentralWidget(centralWidget);
+
+	player->setVideoOutput(videoOutput);
+	player->setAudioOutput(audioOutput);
 }
 
 MainWindow::~MainWindow()
 {
 	delete ui;
-    delete player;
-    delete audioOutput;
-    delete videoOutput;
-    delete imageLabel;
-    delete stackedWidget;
 }
 
 bool MainWindow::isImageFile(const QString& filePath) {
@@ -86,14 +81,17 @@ void MainWindow::ProcessFile(const QString& filePath)
 
 	if (isImage) {
 		DisplayImage(filePath);
+		stackedWidget->setCurrentWidget(imageLabel);
 	}
-
-	if (isMusic) {
+	else if (isMusic) {
 		DisplayMusic(filePath);
 	}
-
-	if (isVideo) {
+	else if (isVideo) {
 		DisplayVideo(filePath);
+		stackedWidget->setCurrentWidget(videoOutput);
+	}
+	else {
+		QMessageBox::warning(this, "Unsupported File", "The file type is not supported.");
 	}
 }
 
@@ -113,22 +111,22 @@ void MainWindow::DisplayImage(const QString& filePath) {
 	imageLabel->setPixmap(QPixmap::fromImage(image));
 	imageLabel->adjustSize();
 
-    stackedWidget->setCurrentWidget(imageLabel);
+	stackedWidget->setCurrentWidget(imageLabel);
 }
 
 void MainWindow::DisplayMusic(const QString& filePath)
 {
-    player->setSource(QUrl::fromLocalFile(filePath));
-    player->play();
+	player->setSource(QUrl::fromLocalFile(filePath));
+	player->play();
 }
 
 void MainWindow::DisplayVideo(const QString& filePath)
 {
-    stackedWidget->setCurrentWidget(videoOutput);
+	videoOutput->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+	videoOutput->show();
 
-    videoOutput->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-    videoOutput->show();
+	player->setSource(QUrl::fromLocalFile(filePath));
+	player->play();
 
-    player->setSource(QUrl::fromLocalFile(filePath));
-    player->play();
+	stackedWidget->setCurrentWidget(videoOutput);
 }

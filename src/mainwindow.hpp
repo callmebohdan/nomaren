@@ -1,20 +1,18 @@
 #ifndef MAINWINDOW_HPP
 #define MAINWINDOW_HPP
 
-#include <QAudioOutput>
-#include <QFile>
 #include <qlabel.h>
 #include <qmainwindow.h>
-#include <QMediaPlayer>
-#include <QStackedWidget>
+#include <qstackedwidget.h>
 #include <qstring.h>
 #include <qtmetamacros.h>
-#include <QVideoWidget>
+#include <qtypes.h>
 #include <qwidget.h>
+#include "qtmultimedia/qaudiooutput.h"
+#include "qtmultimedia/qmediaplayer.h"
+#include "qtmultimediawidgets/qvideowidget.h"
 
-QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
-QT_END_NAMESPACE
 
 class MainWindow : public QMainWindow
 {
@@ -38,10 +36,10 @@ private slots:
 private:
 	Ui::MainWindow* ui;
 	QLabel* imageLabel;
-	QMediaPlayer *player;
-    QAudioOutput *audioOutput;
-    QVideoWidget *videoOutput;
-	QStackedWidget *stackedWidget;
+	QMediaPlayer* player;
+	QAudioOutput* audioOutput;
+	QVideoWidget* videoOutput;
+	QStackedWidget* stackedWidget;
 };
 
 #endif // MAINWINDOW_H
