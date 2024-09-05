@@ -47,7 +47,13 @@ Linux:
 3. Install Qt6:
 
     ```bash
-    sudo apt-get -y install libgl1-mesa-dev libglu1-mesa-dev freeglut3-dev mesa-common-dev qt6-base-dev qt6-base-dev-tools libxcb-cursor0
+    sudo apt-get -y install libgl1-mesa-dev libglu1-mesa-dev freeglut3-dev mesa-common-dev qt6-base-dev qt6-base-dev-tools libxcb-cursor0 qt6-multimedia-dev
+    ```
+
+4. Install missing dependencies for XKB and Vulkan:
+
+    ```bash
+    sudo apt-get -y install libxkbcommon-dev libvulkan-dev libqt6svg6*
     ```
 
 ## Build
@@ -107,7 +113,7 @@ Linux:
 5. To fix the **Warning: Ignoring XDG_SESSION_TYPE=wayland on Gnome. Use QT_QPA_PLATFORM=wayland to run on Wayland anyway** run:
 
     ```bash
-    export QT_QPA_PLATFORM=xcb
+    export QT_QPA_PLATFORM=xcb ; source ~/.bashrc
     ```
 
 ## Usage
@@ -115,11 +121,11 @@ Linux:
 Windows:
 
 ```powershell
-.\bin\nomaren.exe [options]
+.\bin\nomaren.exe [path/to/mdeia/file]
 ```
 
 Linux:
 
 ```bash
-./bin/nomaren
+./bin/nomaren [path/to/mdeia/file]
 ```
