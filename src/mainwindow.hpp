@@ -3,6 +3,8 @@
 
 #include <qlabel.h>
 #include <qmainwindow.h>
+#include <qscopedpointer.h>
+#include <qsharedpointer.h>
 #include <qstackedwidget.h>
 #include <qstring.h>
 #include <qtmetamacros.h>
@@ -35,11 +37,11 @@ private slots:
 
 private:
 	Ui::MainWindow* ui;
-	QLabel* imageLabel;
-	QMediaPlayer* player;
-	QAudioOutput* audioOutput;
-	QVideoWidget* videoOutput;
-	QStackedWidget* stackedWidget;
+	QScopedPointer<QLabel> imageLabel;
+	QScopedPointer<QMediaPlayer> player;
+	QScopedPointer<QAudioOutput> audioOutput;
+	QScopedPointer<QVideoWidget> videoOutput;
+	QScopedPointer<QStackedWidget> stackedWidget;
 };
 
 #endif // MAINWINDOW_H

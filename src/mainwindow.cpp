@@ -8,6 +8,7 @@
 #include <qmessagebox.h>
 #include <qnamespace.h>
 #include <qpixmap.h>
+#include <qsharedpointer.h>
 #include <qsizepolicy.h>
 #include <qstackedwidget.h>
 #include <qstring.h>
@@ -32,22 +33,22 @@ MainWindow::MainWindow(QWidget* parent)
 	ui->setupUi(this);
 
 	imageLabel->setAlignment(Qt::AlignCenter);
-	stackedWidget->addWidget(imageLabel);
+	stackedWidget->addWidget(imageLabel.data());
 
-	stackedWidget->addWidget(videoOutput);
+	stackedWidget->addWidget(videoOutput.data());
 
-	setCentralWidget(stackedWidget);
+	setCentralWidget(stackedWidget.data());
 
-	QVBoxLayout* layout = new QVBoxLayout;
-	layout->addWidget(stackedWidget);
+	QSharedPointer<QVBoxLayout> layout(new QVBoxLayout(this));
+	layout->addWidget(stackedWidget.data());
 	layout->setContentsMargins(0, 0, 0, 0);
 
-	QWidget* centralWidget = new QWidget(this);
-	centralWidget->setLayout(layout);
-	setCentralWidget(centralWidget);
+	QSharedPointer<QWidget> centralWidget(new QWidget(this));
+	centralWidget->setLayout(layout.data());
+	setCentralWidget(centralWidget.data());
 
-	player->setVideoOutput(videoOutput);
-	player->setAudioOutput(audioOutput);
+	player->setVideoOutput(videoOutput.data());
+	player->setAudioOutput(audioOutput.data());
 }
 
 MainWindow::~MainWindow()
@@ -81,14 +82,14 @@ void MainWindow::ProcessFile(const QString& filePath)
 
 	if (isImage) {
 		DisplayImage(filePath);
-		stackedWidget->setCurrentWidget(imageLabel);
+		stackedWidget->setCurrentWidget(imageLabel.data());
 	}
 	else if (isMusic) {
 		DisplayMusic(filePath);
 	}
 	else if (isVideo) {
 		DisplayVideo(filePath);
-		stackedWidget->setCurrentWidget(videoOutput);
+		stackedWidget->setCurrentWidget(videoOutput.data());
 	}
 	else {
 		QMessageBox::warning(this, "Unsupported File", "The file type is not supported.");
@@ -111,7 +112,7 @@ void MainWindow::DisplayImage(const QString& filePath) {
 	imageLabel->setPixmap(QPixmap::fromImage(image));
 	imageLabel->adjustSize();
 
-	stackedWidget->setCurrentWidget(imageLabel);
+	stackedWidget->setCurrentWidget(imageLabel.data());
 }
 
 void MainWindow::DisplayMusic(const QString& filePath)
@@ -128,5 +129,5 @@ void MainWindow::DisplayVideo(const QString& filePath)
 	player->setSource(QUrl::fromLocalFile(filePath));
 	player->play();
 
-	stackedWidget->setCurrentWidget(videoOutput);
+	stackedWidget->setCurrentWidget(videoOutput.data());
 }
