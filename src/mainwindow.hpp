@@ -37,11 +37,11 @@ private slots:
 
 private:
 	Ui::MainWindow* ui;
-	QScopedPointer<QLabel> imageLabel;
-	QScopedPointer<QMediaPlayer> player;
-	QScopedPointer<QAudioOutput> audioOutput;
-	QScopedPointer<QVideoWidget> videoOutput;
-	QScopedPointer<QStackedWidget> stackedWidget;
+	QLabel* imageLabel;
+	QMediaPlayer* player;
+	QAudioOutput* audioOutput;
+	QVideoWidget* videoOutput;
+	QStackedWidget* stackedWidget;
 };
 
 #endif // MAINWINDOW_H

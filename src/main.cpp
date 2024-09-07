@@ -15,15 +15,9 @@ int main(int argc, char* argv[])
 
 	MainWindow mainWindow;
 	mainWindow.show();
-
-	if (!mediaFilePath.isEmpty()) {
-		if (QFile::exists(mediaFilePath)) {
-			mainWindow.ProcessFile(mediaFilePath);
-		}
-		else {
-			qWarning() << "Media file path does not exist:" << mediaFilePath;
-		}
-	}
-
+	//mainWindow.DisplayImage(mediaFilePath);
+	//mainWindow.DisplayMusic(mediaFilePath);
+	//mainWindow.DisplayVideo(mediaFilePath);
+	mainWindow.ProcessFile(mediaFilePath);
 	return application.exec();
 }

@@ -33,22 +33,19 @@ MainWindow::MainWindow(QWidget* parent)
 	ui->setupUi(this);
 
 	imageLabel->setAlignment(Qt::AlignCenter);
-	stackedWidget->addWidget(imageLabel.data());
+	stackedWidget->addWidget(imageLabel);
+	stackedWidget->addWidget(videoOutput);
 
-	stackedWidget->addWidget(videoOutput.data());
-
-	setCentralWidget(stackedWidget.data());
-
-	QSharedPointer<QVBoxLayout> layout(new QVBoxLayout(this));
-	layout->addWidget(stackedWidget.data());
+	QVBoxLayout* layout = new QVBoxLayout();
+	layout->addWidget(stackedWidget);
 	layout->setContentsMargins(0, 0, 0, 0);
 
-	QSharedPointer<QWidget> centralWidget(new QWidget(this));
-	centralWidget->setLayout(layout.data());
-	setCentralWidget(centralWidget.data());
+	QWidget* centralWidget = new QWidget(this);
+	centralWidget->setLayout(layout);
+	setCentralWidget(centralWidget);
 
-	player->setVideoOutput(videoOutput.data());
-	player->setAudioOutput(audioOutput.data());
+	player->setVideoOutput(videoOutput);
+	player->setAudioOutput(audioOutput);
 }
 
 MainWindow::~MainWindow()
@@ -57,39 +54,48 @@ MainWindow::~MainWindow()
 }
 
 bool MainWindow::isImageFile(const QString& filePath) {
+	QFileInfo file(filePath);
+	QString fileExtension = file.suffix();
 	static const QStringList imageExtensions = {"bmp", "gif", "jpeg", "jpg", "png", "pbm", "pgm", "ppm", "tiff", "xbm", "xpm", "webp", "ico", "dds", "tga", "heif", "avif"};
-	QFileInfo fileInfo(filePath);
-	return imageExtensions.contains(fileInfo.suffix().toLower());
+	return imageExtensions.contains(fileExtension, Qt::CaseInsensitive);
 }
 
 bool MainWindow::isMusicFile(const QString& filePath) {
+	QFileInfo file(filePath);
+	QString fileExtension = file.suffix();
 	static const QStringList musicExtensions = {"mp3", "wav", "flac", "aac", "ogg", "wma", "m4a", "aiff"};
-	QFileInfo fileInfo(filePath);
-	return musicExtensions.contains(fileInfo.suffix().toLower());
+	return musicExtensions.contains(fileExtension, Qt::CaseInsensitive);
 }
 
 bool MainWindow::isVideoFile(const QString& filePath) {
+	QFileInfo file(filePath);
+	QString fileExtension = file.suffix();
 	static const QStringList videoExtensions = {"mp4", "avi", "mkv", "mov", "flv", "wmv", "webm", "mpg", "mpeg", "3gp"};
-	QFileInfo fileInfo(filePath);
-	return videoExtensions.contains(fileInfo.suffix().toLower());
+	return videoExtensions.contains(fileExtension, Qt::CaseInsensitive);
 }
 
 void MainWindow::ProcessFile(const QString& filePath)
 {
+	if (!imageLabel || !stackedWidget || !videoOutput) {
+		QMessageBox::critical(this, "Error", "One or more components are not initialized.");
+		return;
+	}
+
 	bool isImage = isImageFile(filePath);
 	bool isMusic = isMusicFile(filePath);
 	bool isVideo = isVideoFile(filePath);
 
 	if (isImage) {
 		DisplayImage(filePath);
-		stackedWidget->setCurrentWidget(imageLabel.data());
+		stackedWidget->setCurrentWidget(imageLabel);
 	}
-	else if (isMusic) {
+	if (isMusic) {
+		stackedWidget->setCurrentWidget(nullptr);
 		DisplayMusic(filePath);
 	}
-	else if (isVideo) {
+	if (isVideo) {
 		DisplayVideo(filePath);
-		stackedWidget->setCurrentWidget(videoOutput.data());
+		stackedWidget->setCurrentWidget(videoOutput);
 	}
 	else {
 		QMessageBox::warning(this, "Unsupported File", "The file type is not supported.");
@@ -108,26 +114,43 @@ void MainWindow::DisplayImage(const QString& filePath) {
 		QMessageBox::critical(this, "Error", "Failed to load image: " + filePath);
 		return;
 	}
-
+	imageLabel->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 	imageLabel->setPixmap(QPixmap::fromImage(image));
 	imageLabel->adjustSize();
 
-	stackedWidget->setCurrentWidget(imageLabel.data());
+	stackedWidget->setCurrentWidget(imageLabel);
 }
 
 void MainWindow::DisplayMusic(const QString& filePath)
 {
+	player->stop();
 	player->setSource(QUrl::fromLocalFile(filePath));
+
+	if (!player->source().isValid()) {
+		qDebug() << "Error: Invalid music file.";
+		QMessageBox::critical(this, "Error", "Failed to load music: " + filePath);
+		return;
+	}
+
 	player->play();
 }
 
 void MainWindow::DisplayVideo(const QString& filePath)
 {
+	player->stop();
+	player->setSource(QUrl::fromLocalFile(filePath));
+
+	if (!player->source().isValid()) {
+		qDebug() << "Error: Invalid video file.";
+		QMessageBox::critical(this, "Error", "Failed to load video: " + filePath);
+		return;
+	}
+
 	videoOutput->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+	videoOutput->setFullScreen(true);
 	videoOutput->show();
 
-	player->setSource(QUrl::fromLocalFile(filePath));
 	player->play();
 
-	stackedWidget->setCurrentWidget(videoOutput.data());
+	stackedWidget->setCurrentWidget(videoOutput);
 }
