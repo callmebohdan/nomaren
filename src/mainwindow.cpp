@@ -1,16 +1,21 @@
 #include <qboxlayout.h>
 #include <qcontainerfwd.h>
+#include <qfile.h>
 #include <qfileinfo.h>
 #include <qimage.h>
+#include <qiodevice.h>
+#include <qiodevicebase.h>
 #include <qlabel.h>
 #include <qlogging.h>
 #include <qmainwindow.h>
 #include <qmessagebox.h>
 #include <qnamespace.h>
 #include <qpixmap.h>
+#include <qplaintextedit.h>
 #include <qsizepolicy.h>
 #include <qstackedwidget.h>
 #include <qstring.h>
+#include <qtextstream.h>
 #include <qtypes.h>
 #include <qurl.h>
 #include <qwidget.h>
@@ -24,6 +29,7 @@ MainWindow::MainWindow(QWidget* parent)
 	: QMainWindow(parent)
 	, ui(new Ui::MainWindow)
 	, imageLabel(new QLabel(this))
+	, textEdit(new QPlainTextEdit(this))
 	, player(new QMediaPlayer(this))
 	, audioOutput(new QAudioOutput(this))
 	, videoOutput(new QVideoWidget(this))
@@ -66,6 +72,15 @@ bool MainWindow::isMusicFile(const QString& filePath) {
 	return musicExtensions.contains(fileExtension, Qt::CaseInsensitive);
 }
 
+bool MainWindow::isTextFile(const QString& filePath)
+{
+	QFileInfo file(filePath);
+	QString fileExtension = file.suffix();
+	static const QStringList textExtensions = {
+	"txt", "md", "log", "csv", "json", "xml", "html", "htm", "ini", "yml", "yaml", "rtf"};
+	return textExtensions.contains(fileExtension, Qt::CaseInsensitive);
+}
+
 bool MainWindow::isVideoFile(const QString& filePath) {
 	QFileInfo file(filePath);
 	QString fileExtension = file.suffix();
@@ -82,17 +97,22 @@ void MainWindow::ProcessFile(const QString& filePath)
 
 	bool isImage = isImageFile(filePath);
 	bool isMusic = isMusicFile(filePath);
+	bool isText = isTextFile(filePath);
 	bool isVideo = isVideoFile(filePath);
 
 	if (isImage) {
 		DisplayImage(filePath);
 		stackedWidget->setCurrentWidget(imageLabel);
 	}
-	if (isMusic) {
+	else if (isMusic) {
 		stackedWidget->setCurrentWidget(nullptr);
 		DisplayMusic(filePath);
 	}
-	if (isVideo) {
+	else if (isText) {
+		DisplayText(filePath);
+		stackedWidget->setCurrentWidget(textEdit);
+	}
+	else if (isVideo) {
 		DisplayVideo(filePath);
 		stackedWidget->setCurrentWidget(videoOutput);
 	}
@@ -132,6 +152,24 @@ void MainWindow::DisplayMusic(const QString& filePath)
 	}
 
 	player->play();
+}
+
+void MainWindow::DisplayText(const QString& filePath)
+{
+	QFile text(filePath);
+	if (!text.open(QIODevice::ReadOnly | QIODevice::Text)) {
+		qDebug() << "Could not open file: " << filePath;
+		return;
+	}
+
+	QTextStream in(&text);
+	QString fileContent = in.readAll();
+	text.close();
+
+	textEdit->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+	textEdit->setPlainText(fileContent);
+
+	stackedWidget->setCurrentWidget(textEdit);
 }
 
 void MainWindow::DisplayVideo(const QString& filePath)

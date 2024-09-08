@@ -15,7 +15,8 @@ int main(int argc, char* argv[])
 	mainWindow.show();
 	//mainWindow.DisplayImage(mediaFilePath);
 	//mainWindow.DisplayMusic(mediaFilePath);
+	//mainWindow.DisplayText(mediaFilePath);
 	//mainWindow.DisplayVideo(mediaFilePath);
-	mainWindow.ProcessFile(mediaFilePath);
+	//mainWindow.ProcessFile(mediaFilePath);
 	return application.exec();
 }
