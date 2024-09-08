@@ -8,7 +8,6 @@
 #include <qmessagebox.h>
 #include <qnamespace.h>
 #include <qpixmap.h>
-#include <qsharedpointer.h>
 #include <qsizepolicy.h>
 #include <qstackedwidget.h>
 #include <qstring.h>

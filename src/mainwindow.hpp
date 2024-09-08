@@ -3,8 +3,6 @@
 
 #include <qlabel.h>
 #include <qmainwindow.h>
-#include <qscopedpointer.h>
-#include <qsharedpointer.h>
 #include <qstackedwidget.h>
 #include <qstring.h>
 #include <qtmetamacros.h>
