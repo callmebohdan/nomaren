@@ -1,4 +1,5 @@
 #include <qapplication.h>
+#include <qmessagebox.h>
 #include <qstring.h>
 #include "mainwindow.hpp"
 
@@ -13,10 +14,13 @@ int main(int argc, char* argv[])
 
 	MainWindow mainWindow;
 	mainWindow.show();
-	//mainWindow.DisplayImage(mediaFilePath);
-	//mainWindow.DisplayMusic(mediaFilePath);
-	//mainWindow.DisplayText(mediaFilePath);
-	//mainWindow.DisplayVideo(mediaFilePath);
-	//mainWindow.ProcessFile(mediaFilePath);
+
+	if (mediaFilePath.isEmpty()) {
+		QMessageBox::warning(nullptr, "No File Provided", "Please provide a valid media file as a command-line argument.");
+	}
+	else {
+		mainWindow.ProcessFile(mediaFilePath);
+	}
+
 	return application.exec();
 }
