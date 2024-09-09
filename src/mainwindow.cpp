@@ -38,7 +38,9 @@ MainWindow::MainWindow(QWidget* parent)
 	ui->setupUi(this);
 
 	imageLabel->setAlignment(Qt::AlignCenter);
+
 	stackedWidget->addWidget(imageLabel);
+	stackedWidget->addWidget(textEdit);
 	stackedWidget->addWidget(videoOutput);
 
 	QVBoxLayout* layout = new QVBoxLayout();
@@ -56,6 +58,7 @@ MainWindow::MainWindow(QWidget* parent)
 MainWindow::~MainWindow()
 {
 	delete ui;
+	ui = nullptr;
 }
 
 bool MainWindow::isImageFile(const QString& filePath) {
