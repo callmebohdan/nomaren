@@ -115,7 +115,7 @@ Linux:
 Windows:
 
 ```powershell
-.\bin\nomaren.exe [path/to/mdeia/file]
+.\bin\nomaren.exe [path/to/media/file]
 ```
 
 Linux:
