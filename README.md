@@ -1,5 +1,6 @@
 # nomaren
-Cross-Platform Media Player
+
+Cross-Platform Media Player (musics, pictures, videos, texts)
 
 ## Requirements
 
