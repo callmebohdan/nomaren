@@ -1,11 +1,14 @@
 #include <qboxlayout.h>
 #include <qcontainerfwd.h>
+#include <qdir.h>
 #include <qfile.h>
 #include <qfileinfo.h>
 #include <qimage.h>
+#include <qinputdialog.h>
 #include <qiodevice.h>
 #include <qiodevicebase.h>
 #include <qlabel.h>
+#include <qlineedit.h>
 #include <qlogging.h>
 #include <qmainwindow.h>
 #include <qmessagebox.h>
@@ -91,7 +94,7 @@ bool MainWindow::isVideoFile(const QString& filePath) {
 	return videoExtensions.contains(fileExtension, Qt::CaseInsensitive);
 }
 
-void MainWindow::ProcessFile(const QString& filePath)
+void MainWindow::ProcessFileFromCommandLine(const QString& filePath)
 {
 	if (!imageLabel || !stackedWidget || !videoOutput) {
 		QMessageBox::critical(this, "Error", "One or more components are not initialized.");
@@ -121,6 +124,18 @@ void MainWindow::ProcessFile(const QString& filePath)
 	}
 	else {
 		QMessageBox::warning(this, "Unsupported File", "The file type is not supported.");
+	}
+}
+
+void MainWindow::ProcessFileFromUserPrompt(QString& filePath)
+{
+	bool ok;
+	QString text = QInputDialog::getText(this, tr("QInputDialog::getText()"),
+		tr("File Path:"), QLineEdit::Normal,
+		QDir::home().dirName(), &ok);
+	if (ok && !text.isEmpty()) {
+		filePath = text;
+		ProcessFileFromCommandLine(filePath);
 	}
 }
 

@@ -31,7 +31,8 @@ public:
 	void DisplayMusic(const QString& filePath);
 	void DisplayText(const QString& filePath);
 	void DisplayVideo(const QString& filePath);
-	void ProcessFile(const QString& filePath);
+	void ProcessFileFromCommandLine(const QString& filePath);
+	void ProcessFileFromUserPrompt(QString& filePath);
 
 private slots:
 	void PositionChanged(qint64 position);

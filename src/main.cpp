@@ -16,10 +16,10 @@ int main(int argc, char* argv[])
 	mainWindow.show();
 
 	if (mediaFilePath.isEmpty()) {
-		QMessageBox::warning(nullptr, "No File Provided", "Please provide a valid media file as a command-line argument.");
+		mainWindow.ProcessFileFromUserPrompt(mediaFilePath);
 	}
 	else {
-		mainWindow.ProcessFile(mediaFilePath);
+		mainWindow.ProcessFileFromCommandLine(mediaFilePath);
 	}
 
 	return application.exec();
