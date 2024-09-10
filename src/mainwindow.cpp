@@ -146,9 +146,12 @@ void MainWindow::DisplayImage(const QString& filePath) {
 	}
 	imageLabel->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 	imageLabel->setPixmap(QPixmap::fromImage(image));
-	imageLabel->adjustSize();
 
 	stackedWidget->setCurrentWidget(imageLabel);
+
+	if (!isFullScreen()) {
+		showFullScreen();
+	}
 }
 
 void MainWindow::DisplayMusic(const QString& filePath) {
@@ -161,6 +164,10 @@ void MainWindow::DisplayMusic(const QString& filePath) {
 	}
 
 	player->play();
+
+	if (!isFullScreen()) {
+		showFullScreen();
+	}
 }
 
 void MainWindow::DisplayText(const QString& filePath) {
@@ -178,6 +185,9 @@ void MainWindow::DisplayText(const QString& filePath) {
 	textEdit->setPlainText(fileContent);
 
 	stackedWidget->setCurrentWidget(textEdit);
+	if (!isFullScreen()) {
+		showFullScreen();
+	}
 }
 
 void MainWindow::DisplayVideo(const QString& filePath) {
@@ -190,10 +200,11 @@ void MainWindow::DisplayVideo(const QString& filePath) {
 	}
 
 	videoOutput->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-	videoOutput->setFullScreen(true);
-	videoOutput->show();
 
 	player->play();
 
 	stackedWidget->setCurrentWidget(videoOutput);
+	if (!isFullScreen()) {
+		showFullScreen();
+	}
 }
