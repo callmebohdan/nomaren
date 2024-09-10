@@ -1,5 +1,4 @@
 #include <qapplication.h>
-#include <qmessagebox.h>
 #include <qstring.h>
 #include "mainwindow.hpp"
 

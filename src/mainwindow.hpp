@@ -1,17 +1,16 @@
 #ifndef MAINWINDOW_HPP
 #define MAINWINDOW_HPP
 
+#include <qaudiooutput.h>
 #include <qlabel.h>
 #include <qmainwindow.h>
+#include <qmediaplayer.h>
 #include <qplaintextedit.h>
 #include <qstackedwidget.h>
 #include <qstring.h>
 #include <qtmetamacros.h>
-#include <qtypes.h>
+#include <qvideowidget.h>
 #include <qwidget.h>
-#include "qtmultimedia/qaudiooutput.h"
-#include "qtmultimedia/qmediaplayer.h"
-#include "qtmultimediawidgets/qvideowidget.h"
 
 namespace Ui { class MainWindow; }
 

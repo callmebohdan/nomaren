@@ -1,3 +1,4 @@
+#include <qaudiooutput.h>
 #include <qboxlayout.h>
 #include <qcontainerfwd.h>
 #include <qdir.h>
@@ -11,6 +12,7 @@
 #include <qlineedit.h>
 #include <qlogging.h>
 #include <qmainwindow.h>
+#include <qmediaplayer.h>
 #include <qmessagebox.h>
 #include <qnamespace.h>
 #include <qpixmap.h>
@@ -19,14 +21,11 @@
 #include <qstackedwidget.h>
 #include <qstring.h>
 #include <qtextstream.h>
-#include <qtypes.h>
 #include <qurl.h>
+#include <qvideowidget.h>
 #include <qwidget.h>
 #include "./ui_mainwindow.h"
 #include "mainwindow.hpp"
-#include "qtmultimedia/qaudiooutput.h"
-#include "qtmultimedia/qmediaplayer.h"
-#include "qtmultimediawidgets/qvideowidget.h"
 
 MainWindow::MainWindow(QWidget* parent)
 	: QMainWindow(parent)
