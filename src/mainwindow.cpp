@@ -58,8 +58,7 @@ MainWindow::MainWindow(QWidget* parent)
 	player->setAudioOutput(audioOutput);
 }
 
-MainWindow::~MainWindow()
-{
+MainWindow::~MainWindow() {
 	delete ui;
 	ui = nullptr;
 }
@@ -78,8 +77,7 @@ bool MainWindow::isMusicFile(const QString& filePath) {
 	return musicExtensions.contains(fileExtension, Qt::CaseInsensitive);
 }
 
-bool MainWindow::isTextFile(const QString& filePath)
-{
+bool MainWindow::isTextFile(const QString& filePath) {
 	QFileInfo file(filePath);
 	QString fileExtension = file.suffix();
 	static const QStringList textExtensions = {
@@ -127,8 +125,7 @@ void MainWindow::ProcessFileFromCommandLine(const QString& filePath)
 	}
 }
 
-void MainWindow::ProcessFileFromUserPrompt(QString& filePath)
-{
+void MainWindow::ProcessFileFromUserPrompt(QString& filePath) {
 	bool ok;
 	QString text = QInputDialog::getText(this, tr("QInputDialog::getText()"),
 		tr("File Path:"), QLineEdit::Normal,
@@ -158,9 +155,7 @@ void MainWindow::DisplayImage(const QString& filePath) {
 	stackedWidget->setCurrentWidget(imageLabel);
 }
 
-void MainWindow::DisplayMusic(const QString& filePath)
-{
-	player->stop();
+void MainWindow::DisplayMusic(const QString& filePath) {
 	player->setSource(QUrl::fromLocalFile(filePath));
 
 	if (!player->source().isValid()) {
@@ -172,8 +167,7 @@ void MainWindow::DisplayMusic(const QString& filePath)
 	player->play();
 }
 
-void MainWindow::DisplayText(const QString& filePath)
-{
+void MainWindow::DisplayText(const QString& filePath) {
 	QFile text(filePath);
 	if (!text.open(QIODevice::ReadOnly | QIODevice::Text)) {
 		qDebug() << "Could not open file: " << filePath;
@@ -190,9 +184,7 @@ void MainWindow::DisplayText(const QString& filePath)
 	stackedWidget->setCurrentWidget(textEdit);
 }
 
-void MainWindow::DisplayVideo(const QString& filePath)
-{
-	player->stop();
+void MainWindow::DisplayVideo(const QString& filePath) {
 	player->setSource(QUrl::fromLocalFile(filePath));
 
 	if (!player->source().isValid()) {

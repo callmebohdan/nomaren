@@ -2,8 +2,7 @@
 #include <qstring.h>
 #include "mainwindow.hpp"
 
-int main(int argc, char* argv[])
-{
+int main(int argc, char* argv[]) {
 	QApplication application(argc, argv);
 
 	QString mediaFilePath;
