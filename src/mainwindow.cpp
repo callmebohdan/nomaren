@@ -34,6 +34,7 @@ MainWindow::MainWindow(QWidget* parent)
 	, textEdit(new QPlainTextEdit(this))
 	, player(new QMediaPlayer(this))
 	, audioOutput(new QAudioOutput(this))
+	, musicWidget(new QWidget(this))
 	, videoOutput(new QVideoWidget(this))
 	, stackedWidget(new QStackedWidget(this))
 {
@@ -109,8 +110,8 @@ void MainWindow::ProcessFileFromCommandLine(const QString& filePath)
 		stackedWidget->setCurrentWidget(imageLabel);
 	}
 	else if (isMusic) {
-		stackedWidget->setCurrentWidget(nullptr);
 		DisplayMusic(filePath);
+		stackedWidget->addWidget(musicWidget);
 	}
 	else if (isText) {
 		DisplayText(filePath);

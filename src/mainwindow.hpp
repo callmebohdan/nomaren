@@ -39,6 +39,7 @@ private:
 	QMediaPlayer* player;
 	QAudioOutput* audioOutput;
 	QVideoWidget* videoOutput;
+	QWidget* musicWidget;
 	QStackedWidget* stackedWidget;
 };
 
