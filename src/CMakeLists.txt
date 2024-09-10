@@ -7,10 +7,9 @@ set(CMAKE_AUTOUIC ON)
 set(ASSET_FILES ../assets/icon/nomaren.rc)
 set(HEADER_FILES mainwindow.hpp)
 set(SOURCE_FILES main.cpp mainwindow.cpp)
+set(UI_FILES mainwindow.ui)
 
-set(UIS mainwindow.ui)
-
-qt6_wrap_ui(UI_HEADERS ${UIS})
+qt6_wrap_ui(UI_HEADERS ${UI_FILES})
 
 add_executable(nomaren ${SOURCE_FILES} ${HEADER_FILES} ${UI_HEADERS} ${ASSET_FILES})
 
