@@ -136,11 +136,6 @@ void MainWindow::ProcessFileFromUserPrompt(QString& filePath) {
 	}
 }
 
-void MainWindow::PositionChanged(qint64 position)
-{
-	qDebug() << "Current position: " << position;
-}
-
 void MainWindow::DisplayImage(const QString& filePath) {
 	QImage image(filePath);
 

@@ -32,9 +32,6 @@ public:
 	void ProcessFileFromCommandLine(const QString& filePath);
 	void ProcessFileFromUserPrompt(QString& filePath);
 
-private slots:
-	void PositionChanged(qint64 position);
-
 private:
 	Ui::MainWindow* ui;
 	QLabel* imageLabel;
