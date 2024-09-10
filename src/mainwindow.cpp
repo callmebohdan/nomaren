@@ -93,9 +93,8 @@ bool MainWindow::isVideoFile(const QString& filePath) {
 	return videoExtensions.contains(fileExtension, Qt::CaseInsensitive);
 }
 
-void MainWindow::ProcessFileFromCommandLine(const QString& filePath)
-{
-	if (!imageLabel || !stackedWidget || !videoOutput) {
+void MainWindow::ProcessFileFromCommandLine(const QString& filePath) {
+	if (!imageLabel || !stackedWidget || !videoOutput || !textEdit || !musicWidget) {
 		QMessageBox::critical(this, "Error", "One or more components are not initialized.");
 		return;
 	}
@@ -141,6 +140,7 @@ void MainWindow::DisplayImage(const QString& filePath) {
 	QImage image(filePath);
 
 	if (image.isNull()) {
+		qDebug() << "Error: Invalid image file.";
 		QMessageBox::critical(this, "Error", "Failed to load image: " + filePath);
 		return;
 	}
@@ -166,7 +166,7 @@ void MainWindow::DisplayMusic(const QString& filePath) {
 void MainWindow::DisplayText(const QString& filePath) {
 	QFile text(filePath);
 	if (!text.open(QIODevice::ReadOnly | QIODevice::Text)) {
-		qDebug() << "Could not open file: " << filePath;
+		qDebug() << "Could not open text file: " << filePath;
 		return;
 	}
 
