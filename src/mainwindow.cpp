@@ -38,6 +38,7 @@ MainWindow::MainWindow(QWidget* parent)
 	, stackedWidget(new QStackedWidget(this))
 {
 	ui->setupUi(this);
+	move(screen()->geometry().center() - frameGeometry().center());
 
 	imageLabel->setAlignment(Qt::AlignCenter);
 
