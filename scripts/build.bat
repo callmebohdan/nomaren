@@ -13,7 +13,6 @@ set BUILD_DIR=%PROJECT_DIR%\build
 set BIN_DIR=%PROJECT_DIR%\bin
 set OUT_DIR=%PROJECT_DIR%\out
 set QT_PATH=C:\Qt\6.7.2\msvc2019_64
-set SRC_DIR=%PROJECT_DIR%\src
 
 if exist "%BIN_DIR%" (
     echo Cleaning bin directory...
