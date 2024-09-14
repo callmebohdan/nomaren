@@ -13,6 +13,7 @@ set BUILD_DIR=%PROJECT_DIR%\build
 set BIN_DIR=%PROJECT_DIR%\bin
 set OUT_DIR=%PROJECT_DIR%\out
 set QT_PATH=C:\Qt\6.7.2\msvc2019_64
+set SRC_DIR=%PROJECT_DIR%\src
 
 if exist "%BIN_DIR%" (
     echo Cleaning bin directory...
@@ -32,6 +33,11 @@ if exist "%OUT_DIR%" (
 echo Creating build directory...
 mkdir "%BUILD_DIR%"
 cd "%BUILD_DIR%"
+
+if exist "%QT_PATH%\bin\uic.exe" (
+    echo Generating ui_mainwindow.h from mainwindow.ui...
+    "%QT_PATH%\bin\uic.exe" -o "%SRC_DIR%\ui_mainwindow.h" "%SRC_DIR%\mainwindow.ui"
+)
 
 echo Configuring the project with CMake...
 cmake -G "Visual Studio 17 2022" -A x64 -DCMAKE_PREFIX_PATH="%QT_PATH%" "%PROJECT_DIR%"
