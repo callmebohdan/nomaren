@@ -28,8 +28,8 @@
 #include <qvariant.h>
 #include <qvideowidget.h>
 #include <qwidget.h>
-#include "./ui_mainwindow.h"
 #include "mainwindow.hpp"
+#include "ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget* parent)
 	: QMainWindow(parent)

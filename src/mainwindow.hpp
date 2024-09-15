@@ -24,7 +24,7 @@ public:
 
 	void ToggleVolume();
 	void ShowAboutSection();
-	bool isVideoFile(const QString& filePath);
+	void ShowDocumentProperties();
 	bool IsImageFile(const QString& filePath);
 	bool IsMusicFile(const QString& filePath);
 	bool IsTextFile(const QString& filePath);
@@ -34,6 +34,8 @@ public:
 	void DisplayText(const QString& filePath);
 	void DisplayVideo(const QString& filePath);
 	void ClosePreviousFile();
+
+public slots:
 	void ProcessFileFromCommandLine(const QString& filePath);
 	void ProcessFileFromUserPrompt();
 
