@@ -59,6 +59,7 @@ MainWindow::MainWindow(QWidget* parent)
 	player->setVideoOutput(videoOutput);
 	player->setAudioOutput(audioOutput);
 	connect(ui->actionAbout, &QAction::triggered, this, &MainWindow::ShowAboutSection);
+	connect(ui->actionExit, &QAction::triggered, this, &QMainWindow::close);
 
 void MainWindow::ShowAboutSection() {
 	QMessageBox::about(this,
