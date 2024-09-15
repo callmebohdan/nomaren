@@ -64,21 +64,21 @@ MainWindow::~MainWindow() {
 	ui = nullptr;
 }
 
-bool MainWindow::isImageFile(const QString& filePath) {
+bool MainWindow::IsImageFile(const QString& filePath) {
 	QFileInfo file(filePath);
 	QString fileExtension = file.suffix();
 	static const QStringList imageExtensions = {"bmp", "gif", "jpeg", "jpg", "png", "pbm", "pgm", "ppm", "tiff", "xbm", "xpm", "webp", "ico", "dds", "tga", "heif", "avif"};
 	return imageExtensions.contains(fileExtension, Qt::CaseInsensitive);
 }
 
-bool MainWindow::isMusicFile(const QString& filePath) {
+bool MainWindow::IsMusicFile(const QString& filePath) {
 	QFileInfo file(filePath);
 	QString fileExtension = file.suffix();
 	static const QStringList musicExtensions = {"mp3", "wav", "flac", "aac", "ogg", "wma", "m4a", "aiff"};
 	return musicExtensions.contains(fileExtension, Qt::CaseInsensitive);
 }
 
-bool MainWindow::isTextFile(const QString& filePath) {
+bool MainWindow::IsTextFile(const QString& filePath) {
 	QFileInfo file(filePath);
 	QString fileExtension = file.suffix();
 	static const QStringList textExtensions = {
@@ -86,7 +86,7 @@ bool MainWindow::isTextFile(const QString& filePath) {
 	return textExtensions.contains(fileExtension, Qt::CaseInsensitive);
 }
 
-bool MainWindow::isVideoFile(const QString& filePath) {
+bool MainWindow::IsVideoFile(const QString& filePath) {
 	QFileInfo file(filePath);
 	QString fileExtension = file.suffix();
 	static const QStringList videoExtensions = {"mp4", "avi", "mkv", "mov", "flv", "wmv", "webm", "mpg", "mpeg", "3gp"};
@@ -99,10 +99,10 @@ void MainWindow::ProcessFileFromCommandLine(const QString& filePath) {
 		return;
 	}
 
-	bool isImage = isImageFile(filePath);
-	bool isMusic = isMusicFile(filePath);
-	bool isText = isTextFile(filePath);
-	bool isVideo = isVideoFile(filePath);
+	bool isImage = IsImageFile(filePath);
+	bool isMusic = IsMusicFile(filePath);
+	bool isText = IsTextFile(filePath);
+	bool isVideo = IsVideoFile(filePath);
 
 	ClosePreviousFile();
 

@@ -25,6 +25,10 @@ public:
 	bool isMusicFile(const QString& filePath);
 	bool isTextFile(const QString& filePath);
 	bool isVideoFile(const QString& filePath);
+	bool IsImageFile(const QString& filePath);
+	bool IsMusicFile(const QString& filePath);
+	bool IsTextFile(const QString& filePath);
+	bool IsVideoFile(const QString& filePath);
 	void DisplayImage(const QString& filePath);
 	void DisplayMusic(const QString& filePath);
 	void DisplayText(const QString& filePath);
