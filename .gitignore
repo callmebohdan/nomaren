@@ -43,3 +43,6 @@ bin/
 
 # Visual C++ cache files
 *.aps
+
+# Autosave files
+*.autosave
