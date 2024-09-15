@@ -60,6 +60,7 @@ MainWindow::MainWindow(QWidget* parent)
 	player->setAudioOutput(audioOutput);
 	connect(ui->actionMediaPlaybackStart, &QAction::triggered, player, &QMediaPlayer::play);
 	connect(ui->actionMediaPlaybackPause, &QAction::triggered, player, &QMediaPlayer::pause);
+	connect(ui->actionMediaPlaybackStop, &QAction::triggered, player, &QMediaPlayer::stop);
 	connect(ui->actionAbout, &QAction::triggered, this, &MainWindow::ShowAboutSection);
 	connect(ui->actionExit, &QAction::triggered, this, &QMainWindow::close);
 
