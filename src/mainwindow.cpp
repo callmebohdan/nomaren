@@ -145,10 +145,6 @@ void MainWindow::DisplayImage(const QString& filePath) {
 	imageLabel->setPixmap(QPixmap::fromImage(image));
 
 	stackedWidget->setCurrentWidget(imageLabel);
-
-	if (!isFullScreen()) {
-		showFullScreen();
-	}
 }
 
 void MainWindow::DisplayMusic(const QString& filePath) {
@@ -161,10 +157,6 @@ void MainWindow::DisplayMusic(const QString& filePath) {
 	}
 
 	player->play();
-
-	if (!isFullScreen()) {
-		showFullScreen();
-	}
 }
 
 void MainWindow::DisplayText(const QString& filePath) {
@@ -182,9 +174,6 @@ void MainWindow::DisplayText(const QString& filePath) {
 	textEdit->setPlainText(fileContent);
 
 	stackedWidget->setCurrentWidget(textEdit);
-	if (!isFullScreen()) {
-		showFullScreen();
-	}
 }
 
 void MainWindow::DisplayVideo(const QString& filePath) {
@@ -201,7 +190,4 @@ void MainWindow::DisplayVideo(const QString& filePath) {
 	player->play();
 
 	stackedWidget->setCurrentWidget(videoOutput);
-	if (!isFullScreen()) {
-		showFullScreen();
-	}
 }
