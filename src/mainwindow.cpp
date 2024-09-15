@@ -58,6 +58,8 @@ MainWindow::MainWindow(QWidget* parent)
 
 	player->setVideoOutput(videoOutput);
 	player->setAudioOutput(audioOutput);
+
+	connect(ui->actionOpenMediaFile, &QAction::triggered, this, &MainWindow::ProcessFileFromUserPrompt);
 	connect(ui->actionMediaPlaybackStart, &QAction::triggered, player, &QMediaPlayer::play);
 	connect(ui->actionMediaPlaybackPause, &QAction::triggered, player, &QMediaPlayer::pause);
 	connect(ui->actionMediaPlaybackStop, &QAction::triggered, player, &QMediaPlayer::stop);
