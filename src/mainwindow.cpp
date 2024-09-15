@@ -1,3 +1,4 @@
+#include <qaction.h>
 #include <qaudiooutput.h>
 #include <qboxlayout.h>
 #include <qcontainerfwd.h>
@@ -57,6 +58,14 @@ MainWindow::MainWindow(QWidget* parent)
 
 	player->setVideoOutput(videoOutput);
 	player->setAudioOutput(audioOutput);
+	connect(ui->actionAbout, &QAction::triggered, this, &MainWindow::ShowAboutSection);
+
+void MainWindow::ShowAboutSection() {
+	QMessageBox::about(this,
+		"About nomaren",
+		"C++ Cross-Platform Media Player (musics, pictures, videos, texts), based on Qt6 framework.");
+}
+
 }
 
 MainWindow::~MainWindow() {

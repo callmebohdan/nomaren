@@ -23,7 +23,7 @@ public:
 
 	bool isImageFile(const QString& filePath);
 	bool isMusicFile(const QString& filePath);
-	bool isTextFile(const QString& filePath);
+	void ShowAboutSection();
 	bool isVideoFile(const QString& filePath);
 	bool IsImageFile(const QString& filePath);
 	bool IsMusicFile(const QString& filePath);
