@@ -63,8 +63,24 @@ MainWindow::MainWindow(QWidget* parent)
 	connect(ui->actionMediaPlaybackStart, &QAction::triggered, player, &QMediaPlayer::play);
 	connect(ui->actionMediaPlaybackPause, &QAction::triggered, player, &QMediaPlayer::pause);
 	connect(ui->actionMediaPlaybackStop, &QAction::triggered, player, &QMediaPlayer::stop);
+	connect(ui->actionToggleVolume, &QAction::triggered, this, &MainWindow::ToggleVolume);
 	connect(ui->actionAbout, &QAction::triggered, this, &MainWindow::ShowAboutSection);
 	connect(ui->actionExit, &QAction::triggered, this, &QMainWindow::close);
+
+
+void MainWindow::ToggleVolume() {
+	if (player->audioOutput()) {
+		bool isMuted = player->audioOutput()->isMuted();
+		player->audioOutput()->setMuted(!isMuted);
+
+		if (isMuted) {
+			ui->actionToggleVolume->setText(tr("Unmute"));
+		}
+		else {
+			ui->actionToggleVolume->setText(tr("Mute"));
+		}
+	}
+}
 
 void MainWindow::ShowAboutSection() {
 	QMessageBox::about(this,

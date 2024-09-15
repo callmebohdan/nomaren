@@ -21,8 +21,8 @@ public:
 	explicit MainWindow(QWidget* parent = nullptr);
 	~MainWindow();
 
-	bool isImageFile(const QString& filePath);
-	bool isMusicFile(const QString& filePath);
+
+	void ToggleVolume();
 	void ShowAboutSection();
 	bool isVideoFile(const QString& filePath);
 	bool IsImageFile(const QString& filePath);
