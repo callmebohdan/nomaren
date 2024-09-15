@@ -29,6 +29,7 @@ public:
 	void DisplayMusic(const QString& filePath);
 	void DisplayText(const QString& filePath);
 	void DisplayVideo(const QString& filePath);
+	void ClosePreviousFile();
 	void ProcessFileFromCommandLine(const QString& filePath);
 	void ProcessFileFromUserPrompt();
 

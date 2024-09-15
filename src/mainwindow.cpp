@@ -104,6 +104,8 @@ void MainWindow::ProcessFileFromCommandLine(const QString& filePath) {
 	bool isText = isTextFile(filePath);
 	bool isVideo = isVideoFile(filePath);
 
+	ClosePreviousFile();
+
 	if (isImage) {
 		DisplayImage(filePath);
 		stackedWidget->setCurrentWidget(imageLabel);
@@ -131,6 +133,14 @@ void MainWindow::ProcessFileFromUserPrompt() {
 	if (ok && !text.isEmpty()) {
 		ProcessFileFromCommandLine(text);
 	}
+}
+
+void MainWindow::ClosePreviousFile() {
+	imageLabel->clear();
+	textEdit->clear();
+	player->stop();
+	player->setSource(QUrl());
+	player->setPosition(0);
 }
 
 void MainWindow::DisplayImage(const QString& filePath) {
