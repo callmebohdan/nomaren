@@ -30,7 +30,7 @@ public:
 	void DisplayText(const QString& filePath);
 	void DisplayVideo(const QString& filePath);
 	void ProcessFileFromCommandLine(const QString& filePath);
-	void ProcessFileFromUserPrompt(QString& filePath);
+	void ProcessFileFromUserPrompt();
 
 private:
 	Ui::MainWindow* ui;

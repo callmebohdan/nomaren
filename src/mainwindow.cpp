@@ -125,14 +125,11 @@ void MainWindow::ProcessFileFromCommandLine(const QString& filePath) {
 	}
 }
 
-void MainWindow::ProcessFileFromUserPrompt(QString& filePath) {
+void MainWindow::ProcessFileFromUserPrompt() {
 	bool ok;
-	QString text = QInputDialog::getText(this, tr("QInputDialog::getText()"),
-		tr("File Path:"), QLineEdit::Normal,
-		QDir::home().dirName(), &ok);
+	QString text = QInputDialog::getText(this, tr("Open File"), tr("File Path:"), QLineEdit::Normal, QDir::home().dirName(), &ok);
 	if (ok && !text.isEmpty()) {
-		filePath = text;
-		ProcessFileFromCommandLine(filePath);
+		ProcessFileFromCommandLine(text);
 	}
 }
 

@@ -13,10 +13,7 @@ int main(int argc, char* argv[]) {
 	MainWindow mainWindow;
 	mainWindow.show();
 
-	if (mediaFilePath.isEmpty()) {
-		mainWindow.ProcessFileFromUserPrompt(mediaFilePath);
-	}
-	else {
+	if (!mediaFilePath.isEmpty()) {
 		mainWindow.ProcessFileFromCommandLine(mediaFilePath);
 	}
 
