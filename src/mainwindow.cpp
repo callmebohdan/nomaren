@@ -13,6 +13,7 @@
 #include <qlineedit.h>
 #include <qlogging.h>
 #include <qmainwindow.h>
+#include <qmediametadata.h>
 #include <qmediaplayer.h>
 #include <qmessagebox.h>
 #include <qnamespace.h>
@@ -24,6 +25,7 @@
 #include <qstring.h>
 #include <qtextstream.h>
 #include <qurl.h>
+#include <qvariant.h>
 #include <qvideowidget.h>
 #include <qwidget.h>
 #include "./ui_mainwindow.h"
@@ -66,6 +68,7 @@ MainWindow::MainWindow(QWidget* parent)
 	connect(ui->actionMediaPlaybackStop, &QAction::triggered, player, &QMediaPlayer::stop);
 	connect(ui->actionToggleVolume, &QAction::triggered, this, &MainWindow::ToggleVolume);
 	connect(ui->actionAbout, &QAction::triggered, this, &MainWindow::ShowAboutSection);
+	connect(ui->actionDocumentProperties, &QAction::triggered, this, &MainWindow::ShowDocumentProperties);
 	connect(ui->actionExit, &QAction::triggered, this, &QMainWindow::close);
 
 	ui->volumeSlider->setRange(0, 100);
@@ -94,6 +97,111 @@ void MainWindow::ShowAboutSection() {
 		"C++ Cross-Platform Media Player (musics, pictures, videos, texts), based on Qt6 framework.");
 }
 
+void MainWindow::ShowDocumentProperties() {
+	QString metadataText;
+
+	QMediaMetaData metaData = player->metaData();
+
+	for (auto key : metaData.keys()) {
+		QVariant value = metaData.value(key);
+
+		QString stringKey;
+
+		switch (key) {
+		case QMediaMetaData::Title:
+			stringKey = "Title";
+			break;
+		case QMediaMetaData::Author:
+			stringKey = "Author";
+			break;
+		case QMediaMetaData::Comment:
+			stringKey = "Comment";
+			break;
+		case QMediaMetaData::Description:
+			stringKey = "Description";
+			break;
+		case QMediaMetaData::Genre:
+			stringKey = "Genre";
+			break;
+		case QMediaMetaData::Date:
+			stringKey = "Date";
+			break;
+		case QMediaMetaData::Language:
+			stringKey = "Language";
+			break;
+		case QMediaMetaData::Publisher:
+			stringKey = "Publisher";
+			break;
+		case QMediaMetaData::Copyright:
+			stringKey = "Copyright";
+			break;
+		case QMediaMetaData::Url:
+			stringKey = "Url";
+			break;
+		case QMediaMetaData::Duration:
+			stringKey = "Duration";
+			break;
+		case QMediaMetaData::MediaType:
+			stringKey = "MediaType";
+			break;
+		case QMediaMetaData::FileFormat:
+			stringKey = "FileFormat";
+			break;
+		case QMediaMetaData::AudioBitRate:
+			stringKey = "AudioBitRate";
+			break;
+		case QMediaMetaData::AudioCodec:
+			stringKey = "AudioCodec";
+			break;
+		case QMediaMetaData::VideoBitRate:
+			stringKey = "VideoBitRate";
+			break;
+		case QMediaMetaData::VideoCodec:
+			stringKey = "VideoCodec";
+			break;
+		case QMediaMetaData::VideoFrameRate:
+			stringKey = "VideoFrameRate";
+			break;
+		case QMediaMetaData::AlbumTitle:
+			stringKey = "AlbumTitle";
+			break;
+		case QMediaMetaData::AlbumArtist:
+			stringKey = "AlbumArtist";
+			break;
+		case QMediaMetaData::ContributingArtist:
+			stringKey = "ContributingArtist";
+			break;
+		case QMediaMetaData::TrackNumber:
+			stringKey = "TrackNumber";
+			break;
+		case QMediaMetaData::Composer:
+			stringKey = "Composer";
+			break;
+		case QMediaMetaData::LeadPerformer:
+			stringKey = "LeadPerformer";
+			break;
+		case QMediaMetaData::ThumbnailImage:
+			stringKey = "ThumbnailImage";
+			break;
+		case QMediaMetaData::CoverArtImage:
+			stringKey = "CoverArtImage";
+			break;
+		case QMediaMetaData::Orientation:
+			stringKey = "Orientation";
+			break;
+		case QMediaMetaData::Resolution:
+			stringKey = "Resolution";
+			break;
+		default:
+			stringKey = QString("Unknown Key (%1)").arg(key);
+			break;
+		}
+		metadataText += QString("%1: %2\n").arg(stringKey).arg(value.toString());
+	}
+
+	QMessageBox::information(this,
+		"Document Properties",
+		metadataText);
 }
 
 MainWindow::~MainWindow() {
