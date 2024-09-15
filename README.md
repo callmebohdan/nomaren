@@ -123,3 +123,11 @@ Linux:
 ```bash
 ./bin/nomaren [path/to/mdeia/file]
 ```
+
+## Example
+
+Windows:
+
+1. Image:
+
+    ![nomaren-example-windows-image](assets/examples/nomaren-example-windows-image.png)
