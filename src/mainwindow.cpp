@@ -19,6 +19,7 @@
 #include <qpixmap.h>
 #include <qplaintextedit.h>
 #include <qsizepolicy.h>
+#include <qslider.h>
 #include <qstackedwidget.h>
 #include <qstring.h>
 #include <qtextstream.h>
@@ -67,6 +68,11 @@ MainWindow::MainWindow(QWidget* parent)
 	connect(ui->actionAbout, &QAction::triggered, this, &MainWindow::ShowAboutSection);
 	connect(ui->actionExit, &QAction::triggered, this, &QMainWindow::close);
 
+	ui->volumeSlider->setRange(0, 100);
+	ui->volumeSlider->setValue(player->audioOutput()->volume() * 100);
+	ui->toolBar->addWidget(ui->volumeSlider);
+	connect(ui->volumeSlider, &QSlider::valueChanged, this, [=](int value) { audioOutput->setVolume(value / 100.0); });
+}
 
 void MainWindow::ToggleVolume() {
 	if (player->audioOutput()) {
