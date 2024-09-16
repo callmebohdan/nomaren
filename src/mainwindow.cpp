@@ -2,6 +2,7 @@
 #include <qaudiooutput.h>
 #include <qboxlayout.h>
 #include <qcontainerfwd.h>
+#include <qcoreevent.h>
 #include <qdir.h>
 #include <qevent.h>
 #include <qfile.h>
@@ -305,6 +306,20 @@ void MainWindow::keyPressEvent(QKeyEvent* event)
 	}
 
 	QMainWindow::keyPressEvent(event);
+}
+
+void MainWindow::mousePressEvent(QMouseEvent* event)
+{
+	switch (event->button())
+	{
+	case Qt::LeftButton:
+		TogglePausePlay();
+		break;
+	default:
+		break;
+	}
+
+	QMainWindow::mousePressEvent(event);
 }
 
 void MainWindow::ClosePreviousFile() {

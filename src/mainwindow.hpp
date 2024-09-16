@@ -41,6 +41,7 @@ public slots:
 	void ProcessFileFromCommandLine(const QString& filePath);
 	void ProcessFileFromUserPrompt();
 	void keyPressEvent(QKeyEvent* event);
+	void mousePressEvent(QMouseEvent* event);
 
 private:
 	Ui::MainWindow* ui;
