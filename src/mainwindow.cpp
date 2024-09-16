@@ -3,6 +3,7 @@
 #include <qboxlayout.h>
 #include <qcontainerfwd.h>
 #include <qdir.h>
+#include <qevent.h>
 #include <qfile.h>
 #include <qfileinfo.h>
 #include <qimage.h>
@@ -87,6 +88,18 @@ void MainWindow::ToggleVolume() {
 		}
 		else {
 			ui->actionToggleVolume->setText(tr("Mute"));
+		}
+	}
+}
+
+void MainWindow::TogglePausePlay()
+{
+	if (player->audioOutput() || player->videoOutput()) {
+		if (player->isPlaying()) {
+			player->pause();
+		}
+		else {
+			player->play();
 		}
 	}
 }
@@ -278,6 +291,20 @@ void MainWindow::ProcessFileFromUserPrompt() {
 	if (ok && !text.isEmpty()) {
 		ProcessFileFromCommandLine(text);
 	}
+}
+
+void MainWindow::keyPressEvent(QKeyEvent* event)
+{
+	switch (event->key())
+	{
+	case Qt::Key_Space:
+		TogglePausePlay();
+		break;
+	default:
+		break;
+	}
+
+	QMainWindow::keyPressEvent(event);
 }
 
 void MainWindow::ClosePreviousFile() {

@@ -2,6 +2,7 @@
 #define MAINWINDOW_HPP
 
 #include <qaudiooutput.h>
+#include <qevent.h>
 #include <qlabel.h>
 #include <qmainwindow.h>
 #include <qmediaplayer.h>
@@ -23,6 +24,7 @@ public:
 
 
 	void ToggleVolume();
+	void TogglePausePlay();
 	void ShowAboutSection();
 	void ShowDocumentProperties();
 	bool IsImageFile(const QString& filePath);
@@ -38,6 +40,7 @@ public:
 public slots:
 	void ProcessFileFromCommandLine(const QString& filePath);
 	void ProcessFileFromUserPrompt();
+	void keyPressEvent(QKeyEvent* event);
 
 private:
 	Ui::MainWindow* ui;
