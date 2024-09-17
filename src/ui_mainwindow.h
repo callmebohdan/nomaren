@@ -55,14 +55,17 @@ public:
         actionExit->setObjectName("actionExit");
         QIcon icon(QIcon::fromTheme(QIcon::ThemeIcon::ApplicationExit));
         actionExit->setIcon(icon);
+        actionExit->setMenuRole(QAction::MenuRole::NoRole);
         actionZoomIn = new QAction(MainWindow);
         actionZoomIn->setObjectName("actionZoomIn");
         QIcon icon1(QIcon::fromTheme(QIcon::ThemeIcon::ZoomIn));
         actionZoomIn->setIcon(icon1);
+        actionZoomIn->setMenuRole(QAction::MenuRole::NoRole);
         actionPreferences = new QAction(MainWindow);
         actionPreferences->setObjectName("actionPreferences");
         QIcon icon2(QIcon::fromTheme(QIcon::ThemeIcon::DocumentProperties));
         actionPreferences->setIcon(icon2);
+        actionPreferences->setMenuRole(QAction::MenuRole::NoRole);
         actionOpenMediaFile = new QAction(MainWindow);
         actionOpenMediaFile->setObjectName("actionOpenMediaFile");
         QIcon icon3(QIcon::fromTheme(QIcon::ThemeIcon::DocumentOpen));
@@ -72,6 +75,7 @@ public:
         actionZoomOut->setObjectName("actionZoomOut");
         QIcon icon4(QIcon::fromTheme(QIcon::ThemeIcon::ZoomOut));
         actionZoomOut->setIcon(icon4);
+        actionZoomOut->setMenuRole(QAction::MenuRole::NoRole);
         actionMediaPlaybackPause = new QAction(MainWindow);
         actionMediaPlaybackPause->setObjectName("actionMediaPlaybackPause");
         QIcon icon5(QIcon::fromTheme(QIcon::ThemeIcon::MediaPlaybackPause));
@@ -101,6 +105,7 @@ public:
         actionAbout->setObjectName("actionAbout");
         QIcon icon9(QIcon::fromTheme(QIcon::ThemeIcon::HelpAbout));
         actionAbout->setIcon(icon9);
+        actionAbout->setMenuRole(QAction::MenuRole::NoRole);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
         verticalLayout = new QVBoxLayout(centralwidget);
@@ -163,18 +168,33 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "nomaren", nullptr));
-        actionExit->setText(QCoreApplication::translate("MainWindow", "Close nomaren", nullptr));
+        actionExit->setText(QCoreApplication::translate("MainWindow", "Exit", nullptr));
+#if QT_CONFIG(tooltip)
+        actionExit->setToolTip(QCoreApplication::translate("MainWindow", "Exit", nullptr));
+#endif // QT_CONFIG(tooltip)
         actionZoomIn->setText(QCoreApplication::translate("MainWindow", "Zoom In", nullptr));
         actionPreferences->setText(QCoreApplication::translate("MainWindow", "Preferences", nullptr));
         actionOpenMediaFile->setText(QCoreApplication::translate("MainWindow", "Open Media File", nullptr));
         actionZoomOut->setText(QCoreApplication::translate("MainWindow", "Zoom Out", nullptr));
-        actionMediaPlaybackPause->setText(QCoreApplication::translate("MainWindow", "MediaPlaybackPause", nullptr));
-        actionMediaPlaybackStart->setText(QCoreApplication::translate("MainWindow", "MediaPlaybackStart", nullptr));
-        actionMediaPlaybackStop->setText(QCoreApplication::translate("MainWindow", "MediaPlaybackStop", nullptr));
-        actionDocumentProperties->setText(QCoreApplication::translate("MainWindow", "DocumentProperties", nullptr));
-        actionToggleVolume->setText(QCoreApplication::translate("MainWindow", "ToggleAudioVolume", nullptr));
+        actionMediaPlaybackPause->setText(QCoreApplication::translate("MainWindow", "Media Playback Pause", nullptr));
 #if QT_CONFIG(tooltip)
-        actionToggleVolume->setToolTip(QCoreApplication::translate("MainWindow", "ToggleAudioVolume", nullptr));
+        actionMediaPlaybackPause->setToolTip(QCoreApplication::translate("MainWindow", "Media Playback Pause", nullptr));
+#endif // QT_CONFIG(tooltip)
+        actionMediaPlaybackStart->setText(QCoreApplication::translate("MainWindow", "Media Playback Start", nullptr));
+#if QT_CONFIG(tooltip)
+        actionMediaPlaybackStart->setToolTip(QCoreApplication::translate("MainWindow", "Media Playback Start", nullptr));
+#endif // QT_CONFIG(tooltip)
+        actionMediaPlaybackStop->setText(QCoreApplication::translate("MainWindow", "Media Playback Stop", nullptr));
+#if QT_CONFIG(tooltip)
+        actionMediaPlaybackStop->setToolTip(QCoreApplication::translate("MainWindow", "Media Playback Stop", nullptr));
+#endif // QT_CONFIG(tooltip)
+        actionDocumentProperties->setText(QCoreApplication::translate("MainWindow", "Document Properties", nullptr));
+#if QT_CONFIG(tooltip)
+        actionDocumentProperties->setToolTip(QCoreApplication::translate("MainWindow", "Document Properties", nullptr));
+#endif // QT_CONFIG(tooltip)
+        actionToggleVolume->setText(QCoreApplication::translate("MainWindow", "Toggle Audio Volume", nullptr));
+#if QT_CONFIG(tooltip)
+        actionToggleVolume->setToolTip(QCoreApplication::translate("MainWindow", "Toggle Audio Volume", nullptr));
 #endif // QT_CONFIG(tooltip)
         actionAbout->setText(QCoreApplication::translate("MainWindow", "About", nullptr));
         menuFile->setTitle(QCoreApplication::translate("MainWindow", "File", nullptr));
