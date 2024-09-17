@@ -2,7 +2,6 @@
 #include <qaudiooutput.h>
 #include <qboxlayout.h>
 #include <qcontainerfwd.h>
-#include <qcoreevent.h>
 #include <qdir.h>
 #include <qevent.h>
 #include <qfile.h>
@@ -90,6 +89,20 @@ void MainWindow::ToggleVolume() {
 		else {
 			ui->actionToggleVolume->setText(tr("Mute"));
 		}
+	}
+}
+
+void MainWindow::IncreaseVolume() {
+	if (player->audioOutput()) {
+		float currentVolume = player->audioOutput()->volume();
+		player->audioOutput()->setVolume(currentVolume + 0.10);
+	}
+}
+
+void MainWindow::DecreaseVolume() {
+	if (player->audioOutput()) {
+		float currentVolume = player->audioOutput()->volume();
+		player->audioOutput()->setVolume(currentVolume - 0.10);
 	}
 }
 
@@ -300,6 +313,12 @@ void MainWindow::keyPressEvent(QKeyEvent* event)
 	{
 	case Qt::Key_Space:
 		TogglePausePlay();
+		break;
+	case Qt::Key_Up:
+		IncreaseVolume();
+		break;
+	case Qt::Key_Down:
+		DecreaseVolume();
 		break;
 	default:
 		break;

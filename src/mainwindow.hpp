@@ -22,7 +22,8 @@ public:
 	explicit MainWindow(QWidget* parent = nullptr);
 	~MainWindow();
 
-
+	void DecreaseVolume();
+	void IncreaseVolume();
 	void ToggleVolume();
 	void TogglePausePlay();
 	void ShowAboutSection();
