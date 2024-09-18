@@ -7,6 +7,7 @@
 #include <qevent.h>
 #include <qfile.h>
 #include <qfileinfo.h>
+#include <qforeach.h>
 #include <qimage.h>
 #include <qinputdialog.h>
 #include <qiodevice.h>
@@ -26,6 +27,7 @@
 #include <qstackedwidget.h>
 #include <qstring.h>
 #include <qtextstream.h>
+#include <qtoolbar.h>
 #include <qurl.h>
 #include <qvariant.h>
 #include <qvideowidget.h>
@@ -104,6 +106,24 @@ void MainWindow::DecreaseVolume() {
 	if (player->audioOutput()) {
 		float currentVolume = player->audioOutput()->volume();
 		player->audioOutput()->setVolume(currentVolume - 0.10);
+	}
+}
+
+
+void MainWindow::ToggleFullScreen() {
+	if (!isFullScreen()) {
+		showFullScreen();
+		menuBar()->setVisible(false);
+		foreach(QToolBar * toolbar, findChildren<QToolBar*>()) {
+			toolbar->setVisible(false);
+		}
+	}
+	else {
+		showNormal();
+		menuBar()->setVisible(true);
+		foreach(QToolBar * toolbar, findChildren<QToolBar*>()) {
+			toolbar->setVisible(true);
+		}
 	}
 }
 
@@ -320,6 +340,9 @@ void MainWindow::keyPressEvent(QKeyEvent* event)
 		break;
 	case Qt::Key_Down:
 		DecreaseVolume();
+		break;
+	case Qt::Key_F11:
+		ToggleFullScreen();
 		break;
 	default:
 		break;

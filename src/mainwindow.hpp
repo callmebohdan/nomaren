@@ -23,6 +23,7 @@ public:
 	~MainWindow();
 
 	void DecreaseVolume();
+	void ToggleFullScreen();
 	void IncreaseVolume();
 	void ToggleVolume();
 	void TogglePausePlay();
