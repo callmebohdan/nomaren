@@ -130,4 +130,4 @@ Windows:
 
 1. Image:
 
-    ![nomaren-example-windows-image](assets/examples/nomaren-example-windows-image.png)
+    ![nomaren-example-windows-image](assets/examples/windows/nomaren-example-windows-image.png)
