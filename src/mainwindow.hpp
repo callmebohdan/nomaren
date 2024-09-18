@@ -43,6 +43,7 @@ public slots:
 	void ProcessFileFromUserPrompt();
 	void keyPressEvent(QKeyEvent* event);
 	void mousePressEvent(QMouseEvent* event);
+	void wheelEvent(QWheelEvent* event);
 
 private:
 	Ui::MainWindow* ui;

@@ -1,3 +1,4 @@
+#include <cmath>
 #include <qaction.h>
 #include <qaudiooutput.h>
 #include <qboxlayout.h>
@@ -339,6 +340,22 @@ void MainWindow::mousePressEvent(QMouseEvent* event)
 	}
 
 	QMainWindow::mousePressEvent(event);
+}
+
+void MainWindow::wheelEvent(QWheelEvent* event)
+{
+	int delta = event->angleDelta().y();
+
+	if (delta > 0)
+	{
+		IncreaseVolume();
+	}
+	else if (delta < 0)
+	{
+		DecreaseVolume();
+	}
+
+	QMainWindow::wheelEvent(event);
 }
 
 void MainWindow::ClosePreviousFile() {
