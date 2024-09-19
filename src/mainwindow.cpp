@@ -358,6 +358,7 @@ void MainWindow::mousePressEvent(QMouseEvent* event)
 	case Qt::LeftButton:
 		TogglePausePlay();
 		break;
+	case Qt::RightButton:
 	default:
 		break;
 	}
