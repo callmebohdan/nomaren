@@ -37,6 +37,13 @@
     <item>
      <widget class="QStackedWidget" name="stackedWidget"/>
     </item>
+    <item>
+     <widget class="QSlider" name="playbackSlider">
+      <property name="orientation">
+       <enum>Qt::Orientation::Horizontal</enum>
+      </property>
+     </widget>
+    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menuBar">
@@ -89,6 +96,17 @@
    <addaction name="actionMediaPlaybackStop"/>
    <addaction name="separator"/>
    <addaction name="actionToggleVolume"/>
+  </widget>
+  <widget class="QToolBar" name="playbackToolBar">
+   <property name="windowTitle">
+    <string>toolBar_2</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>BottomToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
   </widget>
   <action name="actionExit">
    <property name="icon">

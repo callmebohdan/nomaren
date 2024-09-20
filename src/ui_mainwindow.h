@@ -41,10 +41,12 @@ public:
     QVBoxLayout *verticalLayout;
     QSlider *volumeSlider;
     QStackedWidget *stackedWidget;
+    QSlider *playbackSlider;
     QMenuBar *menuBar;
     QMenu *menuFile;
     QMenu *menuHelp;
     QToolBar *toolBar;
+    QToolBar *playbackToolBar;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -127,6 +129,12 @@ public:
 
         verticalLayout->addWidget(stackedWidget);
 
+        playbackSlider = new QSlider(centralwidget);
+        playbackSlider->setObjectName("playbackSlider");
+        playbackSlider->setOrientation(Qt::Orientation::Horizontal);
+
+        verticalLayout->addWidget(playbackSlider);
+
         MainWindow->setCentralWidget(centralwidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName("menuBar");
@@ -144,6 +152,9 @@ public:
         toolBar = new QToolBar(MainWindow);
         toolBar->setObjectName("toolBar");
         MainWindow->addToolBar(Qt::ToolBarArea::TopToolBarArea, toolBar);
+        playbackToolBar = new QToolBar(MainWindow);
+        playbackToolBar->setObjectName("playbackToolBar");
+        MainWindow->addToolBar(Qt::ToolBarArea::BottomToolBarArea, playbackToolBar);
 
         menuBar->addAction(menuFile->menuAction());
         menuBar->addAction(menuHelp->menuAction());
@@ -200,6 +211,7 @@ public:
         menuFile->setTitle(QCoreApplication::translate("MainWindow", "File", nullptr));
         menuHelp->setTitle(QCoreApplication::translate("MainWindow", "Help", nullptr));
         toolBar->setWindowTitle(QCoreApplication::translate("MainWindow", "toolBar", nullptr));
+        playbackToolBar->setWindowTitle(QCoreApplication::translate("MainWindow", "toolBar_2", nullptr));
     } // retranslateUi
 
 };
