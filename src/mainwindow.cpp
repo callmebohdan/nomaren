@@ -33,6 +33,7 @@
 #include <qvariant.h>
 #include <qvideowidget.h>
 #include <qwidget.h>
+#include <utility>
 #include "mainwindow.hpp"
 #include "ui_mainwindow.h"
 
