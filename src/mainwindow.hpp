@@ -10,6 +10,7 @@
 #include <qstackedwidget.h>
 #include <qstring.h>
 #include <qtmetamacros.h>
+#include <qtypes.h>
 #include <qvideowidget.h>
 #include <qwidget.h>
 
@@ -25,6 +26,7 @@ public:
 	void DecreaseVolume();
 	void ToggleFullScreen();
 	void IncreaseVolume();
+	QString milisecondsToHMS(qint64 miliseconds);
 	void ToggleVolume();
 	void TogglePausePlay();
 	void ShowAboutSection();

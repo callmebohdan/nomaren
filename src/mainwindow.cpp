@@ -28,6 +28,7 @@
 #include <qstring.h>
 #include <qtextstream.h>
 #include <qtoolbar.h>
+#include <qtypes.h>
 #include <qurl.h>
 #include <qvariant.h>
 #include <qvideowidget.h>
@@ -79,6 +80,46 @@ MainWindow::MainWindow(QWidget* parent)
 	ui->volumeSlider->setValue(player->audioOutput()->volume() * 100);
 	ui->toolBar->addWidget(ui->volumeSlider);
 	connect(ui->volumeSlider, &QSlider::valueChanged, this, [=](int value) { audioOutput->setVolume(value / 100.0); });
+
+	if (player) {
+		QLabel* playerDuration(new QLabel(this));
+		connect(player, &QMediaPlayer::durationChanged, this, [=](qint64 duration) {
+			ui->playbackSlider->setRange(0, duration);
+			playerDuration->setText("0/" + milisecondsToHMS(duration));
+			});
+		connect(player, &QMediaPlayer::positionChanged, this, [=](qint64 position) {
+			ui->playbackSlider->setValue(position);
+			playerDuration->setText(milisecondsToHMS(position) + "/" + milisecondsToHMS(player->duration()));
+			});
+		connect(player, &QMediaPlayer::mediaStatusChanged, this, [=](QMediaPlayer::MediaStatus status) {
+			if (status == QMediaPlayer::LoadedMedia || status == QMediaPlayer::BufferedMedia) {
+				playerDuration->setText("0/" + milisecondsToHMS(player->duration()));
+			}
+			});
+		connect(ui->playbackSlider, &QSlider::valueChanged, this, [=](int value) { player->setPosition(value); });
+		playerDuration->setMaximumHeight(30);
+		ui->playbackSlider->setMaximumHeight(30);
+		QHBoxLayout* layout = new QHBoxLayout;
+		layout->addWidget(ui->playbackSlider);
+		layout->addWidget(playerDuration);
+		layout->setStretch(0, 30);
+		layout->setStretch(1, 1);
+		QWidget* container = new QWidget(this);
+		container->setLayout(layout);
+		ui->playbackToolBar->addWidget(container);
+	}
+}
+
+QString MainWindow::milisecondsToHMS(qint64 miliseconds) {
+	auto totalTime = miliseconds / 1000;
+
+	auto hours = totalTime / 3600;
+	totalTime -= hours * 3600;
+	auto minutes = totalTime / 60;
+	totalTime -= hours * 60;
+	auto seconds = totalTime;
+
+	return QString::number(hours) + ":" + QString::number(minutes) + ":" + QString::number(seconds);
 }
 
 void MainWindow::ToggleVolume() {
