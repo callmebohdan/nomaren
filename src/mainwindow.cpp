@@ -53,6 +53,7 @@ MainWindow::MainWindow(QWidget* parent)
 	imageLabel->setAlignment(Qt::AlignCenter);
 
 	stackedWidget->addWidget(imageLabel);
+	stackedWidget->addWidget(musicWidget);
 	stackedWidget->addWidget(textEdit);
 	stackedWidget->addWidget(videoOutput);
 
@@ -346,7 +347,7 @@ void MainWindow::ProcessFileFromCommandLine(const QString& filePath) {
 	}
 	else if (isMusic) {
 		DisplayMusic(filePath);
-		stackedWidget->addWidget(musicWidget);
+		stackedWidget->setCurrentWidget(musicWidget);
 	}
 	else if (isText) {
 		DisplayText(filePath);
