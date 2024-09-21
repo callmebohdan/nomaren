@@ -47,7 +47,12 @@ Nomaren::Nomaren(QWidget* parent)
 	, stackedWidget(new QStackedWidget(this))
 {
 	ui->setupUi(this);
+	SetupWindow();
+
+void Nomaren::SetupWindow() {
 	move(screen()->geometry().center() - frameGeometry().center());
+	setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
+}
 
 	imageLabel->setAlignment(Qt::AlignCenter);
 

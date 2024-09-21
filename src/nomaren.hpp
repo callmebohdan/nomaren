@@ -23,6 +23,7 @@ public:
 	explicit Nomaren(QWidget* parent = nullptr);
 	~Nomaren();
 
+	void SetupWindow();
 	void DecreaseVolume();
 	void ToggleFullScreen();
 	void IncreaseVolume();
