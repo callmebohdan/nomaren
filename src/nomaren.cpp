@@ -50,6 +50,7 @@ Nomaren::Nomaren(QWidget* parent)
 	SetupWindow();
 	SetupWidgets();
 	SetupActions();
+	SetupVolumeSlider();
 
 void Nomaren::SetupWindow() {
 	move(screen()->geometry().center() - frameGeometry().center());
@@ -86,10 +87,15 @@ void Nomaren::SetupActions() {
 	connect(ui->actionAbout, &QAction::triggered, this, &Nomaren::ShowAboutSection);
 }
 
-	ui->volumeSlider->setRange(0, 100);
-	ui->volumeSlider->setValue(player->audioOutput()->volume() * 100);
-	ui->toolBar->addWidget(ui->volumeSlider);
-	connect(ui->volumeSlider, &QSlider::valueChanged, this, [=](int value) { audioOutput->setVolume(value / 100.0); });
+void Nomaren::SetupVolumeSlider() {
+	QSlider* volumeSlider(new QSlider(this));
+	volumeSlider->setOrientation(Qt::Orientation::Horizontal);
+	volumeSlider->setMaximumSize(75, 30);
+	volumeSlider->setRange(0, 100);
+	volumeSlider->setValue(player->audioOutput()->volume() * 100);
+	ui->toolBar->insertWidget(ui->toolBar->actions().value(9), volumeSlider);
+	connect(volumeSlider, &QSlider::valueChanged, this, [=](int value) { audioOutput->setVolume(value / 100.0); });
+}
 
 	if (player) {
 		QLabel* playerDuration(new QLabel(this));

@@ -26,6 +26,7 @@ public:
 	void SetupWindow();
 	void SetupWidgets();
 	void SetupActions();
+	void SetupVolumeSlider();
 	void DecreaseVolume();
 	void ToggleFullScreen();
 	void IncreaseVolume();
