@@ -87,15 +87,15 @@ Nomaren::Nomaren(QWidget* parent)
 		QLabel* playerDuration(new QLabel(this));
 		connect(player, &QMediaPlayer::durationChanged, this, [=](qint64 duration) {
 			ui->playbackSlider->setRange(0, duration);
-			playerDuration->setText("0/" + milisecondsToHMS(duration));
+			playerDuration->setText("0/" + convertMillisecondsToHMS(duration));
 			});
 		connect(player, &QMediaPlayer::positionChanged, this, [=](qint64 position) {
 			ui->playbackSlider->setValue(position);
-			playerDuration->setText(milisecondsToHMS(position) + "/" + milisecondsToHMS(player->duration()));
+			playerDuration->setText(convertMillisecondsToHMS(position) + "/" + convertMillisecondsToHMS(player->duration()));
 			});
 		connect(player, &QMediaPlayer::mediaStatusChanged, this, [=](QMediaPlayer::MediaStatus status) {
 			if (status == QMediaPlayer::LoadedMedia || status == QMediaPlayer::BufferedMedia) {
-				playerDuration->setText("0/" + milisecondsToHMS(player->duration()));
+				playerDuration->setText("0/" + convertMillisecondsToHMS(player->duration()));
 			}
 			});
 		connect(ui->playbackSlider, &QSlider::valueChanged, this, [=](int value) { player->setPosition(value); });
@@ -112,14 +112,14 @@ Nomaren::Nomaren(QWidget* parent)
 	}
 }
 
-QString Nomaren::milisecondsToHMS(qint64 miliseconds) {
-	auto totalTime = miliseconds / 1000;
+QString Nomaren::convertMillisecondsToHMS(qint64 milliseconds) {
+	auto totalTime = milliseconds / 1000;
 
 	auto hours = totalTime / 3600;
 	totalTime -= hours * 3600;
 	auto minutes = totalTime / 60;
 	totalTime -= hours * 60;
-	auto seconds = totalTime;
+	auto seconds = totalTime / 60;
 
 	return QString::number(hours) + ":" + QString::number(minutes) + ":" + QString::number(seconds);
 }

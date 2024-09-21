@@ -26,7 +26,7 @@ public:
 	void DecreaseVolume();
 	void ToggleFullScreen();
 	void IncreaseVolume();
-	QString milisecondsToHMS(qint64 miliseconds);
+	QString convertMillisecondsToHMS(qint64 milliseconds);
 	void ToggleVolume();
 	void TogglePausePlay();
 	void ShowAboutSection();
