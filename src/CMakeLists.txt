@@ -5,9 +5,9 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
 set(ASSET_FILES ../assets/icon/nomaren.rc)
-set(HEADER_FILES mainwindow.hpp)
-set(SOURCE_FILES main.cpp mainwindow.cpp)
-set(UI_FILES mainwindow.ui)
+set(HEADER_FILES nomaren.hpp)
+set(SOURCE_FILES main.cpp nomaren.cpp)
+set(UI_FILES nomaren.ui)
 
 qt6_wrap_ui(UI_HEADERS ${UI_FILES})
 

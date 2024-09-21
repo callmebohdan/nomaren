@@ -34,12 +34,12 @@
 #include <qvideowidget.h>
 #include <qwidget.h>
 #include <utility>
-#include "mainwindow.hpp"
-#include "ui_mainwindow.h"
+#include "nomaren.hpp"
+#include "ui_nomaren.h"
 
-MainWindow::MainWindow(QWidget* parent)
+Nomaren::Nomaren(QWidget* parent)
 	: QMainWindow(parent)
-	, ui(new Ui::MainWindow)
+	, ui(new Ui::Nomaren)
 	, imageLabel(new QLabel(this))
 	, textEdit(new QPlainTextEdit(this))
 	, player(new QMediaPlayer(this))
@@ -69,13 +69,13 @@ MainWindow::MainWindow(QWidget* parent)
 	player->setVideoOutput(videoOutput);
 	player->setAudioOutput(audioOutput);
 
-	connect(ui->actionOpenMediaFile, &QAction::triggered, this, &MainWindow::ProcessFileFromUserPrompt);
+	connect(ui->actionOpenMediaFile, &QAction::triggered, this, &Nomaren::ProcessFileFromUserPrompt);
 	connect(ui->actionMediaPlaybackStart, &QAction::triggered, player, &QMediaPlayer::play);
 	connect(ui->actionMediaPlaybackPause, &QAction::triggered, player, &QMediaPlayer::pause);
 	connect(ui->actionMediaPlaybackStop, &QAction::triggered, player, &QMediaPlayer::stop);
-	connect(ui->actionToggleVolume, &QAction::triggered, this, &MainWindow::ToggleVolume);
-	connect(ui->actionAbout, &QAction::triggered, this, &MainWindow::ShowAboutSection);
-	connect(ui->actionDocumentProperties, &QAction::triggered, this, &MainWindow::ShowDocumentProperties);
+	connect(ui->actionToggleVolume, &QAction::triggered, this, &Nomaren::ToggleVolume);
+	connect(ui->actionAbout, &QAction::triggered, this, &Nomaren::ShowAboutSection);
+	connect(ui->actionDocumentProperties, &QAction::triggered, this, &Nomaren::ShowDocumentProperties);
 	connect(ui->actionExit, &QAction::triggered, this, &QMainWindow::close);
 
 	ui->volumeSlider->setRange(0, 100);
@@ -112,7 +112,7 @@ MainWindow::MainWindow(QWidget* parent)
 	}
 }
 
-QString MainWindow::milisecondsToHMS(qint64 miliseconds) {
+QString Nomaren::milisecondsToHMS(qint64 miliseconds) {
 	auto totalTime = miliseconds / 1000;
 
 	auto hours = totalTime / 3600;
@@ -124,7 +124,7 @@ QString MainWindow::milisecondsToHMS(qint64 miliseconds) {
 	return QString::number(hours) + ":" + QString::number(minutes) + ":" + QString::number(seconds);
 }
 
-void MainWindow::ToggleVolume() {
+void Nomaren::ToggleVolume() {
 	if (player->audioOutput()) {
 		bool isMuted = player->audioOutput()->isMuted();
 		player->audioOutput()->setMuted(!isMuted);
@@ -138,14 +138,14 @@ void MainWindow::ToggleVolume() {
 	}
 }
 
-void MainWindow::IncreaseVolume() {
+void Nomaren::IncreaseVolume() {
 	if (player->audioOutput()) {
 		float currentVolume = player->audioOutput()->volume();
 		player->audioOutput()->setVolume(currentVolume + 0.10);
 	}
 }
 
-void MainWindow::DecreaseVolume() {
+void Nomaren::DecreaseVolume() {
 	if (player->audioOutput()) {
 		float currentVolume = player->audioOutput()->volume();
 		player->audioOutput()->setVolume(currentVolume - 0.10);
@@ -153,7 +153,7 @@ void MainWindow::DecreaseVolume() {
 }
 
 
-void MainWindow::ToggleFullScreen() {
+void Nomaren::ToggleFullScreen() {
 	if (!isFullScreen()) {
 		showFullScreen();
 		menuBar()->setVisible(false);
@@ -170,7 +170,7 @@ void MainWindow::ToggleFullScreen() {
 	}
 }
 
-void MainWindow::TogglePausePlay()
+void Nomaren::TogglePausePlay()
 {
 	if (player->audioOutput() || player->videoOutput()) {
 		if (player->isPlaying()) {
@@ -182,13 +182,13 @@ void MainWindow::TogglePausePlay()
 	}
 }
 
-void MainWindow::ShowAboutSection() {
+void Nomaren::ShowAboutSection() {
 	QMessageBox::about(this,
 		"About nomaren",
 		"C++ Cross-Platform Media Player (musics, pictures, videos, texts), based on Qt6 framework.");
 }
 
-void MainWindow::ShowDocumentProperties() {
+void Nomaren::ShowDocumentProperties() {
 	QString metadataText;
 
 	QMediaMetaData metaData = player->metaData();
@@ -295,26 +295,26 @@ void MainWindow::ShowDocumentProperties() {
 		metadataText);
 }
 
-MainWindow::~MainWindow() {
+Nomaren::~Nomaren() {
 	delete ui;
 	ui = nullptr;
 }
 
-bool MainWindow::IsImageFile(const QString& filePath) {
+bool Nomaren::IsImageFile(const QString& filePath) {
 	QFileInfo file(filePath);
 	QString fileExtension = file.suffix();
 	static const QStringList imageExtensions = {"bmp", "gif", "jpeg", "jpg", "png", "pbm", "pgm", "ppm", "tiff", "xbm", "xpm", "webp", "ico", "dds", "tga", "heif", "avif"};
 	return imageExtensions.contains(fileExtension, Qt::CaseInsensitive);
 }
 
-bool MainWindow::IsMusicFile(const QString& filePath) {
+bool Nomaren::IsMusicFile(const QString& filePath) {
 	QFileInfo file(filePath);
 	QString fileExtension = file.suffix();
 	static const QStringList musicExtensions = {"mp3", "wav", "flac", "aac", "ogg", "wma", "m4a", "aiff"};
 	return musicExtensions.contains(fileExtension, Qt::CaseInsensitive);
 }
 
-bool MainWindow::IsTextFile(const QString& filePath) {
+bool Nomaren::IsTextFile(const QString& filePath) {
 	QFileInfo file(filePath);
 	QString fileExtension = file.suffix();
 	static const QStringList textExtensions = {
@@ -322,14 +322,14 @@ bool MainWindow::IsTextFile(const QString& filePath) {
 	return textExtensions.contains(fileExtension, Qt::CaseInsensitive);
 }
 
-bool MainWindow::IsVideoFile(const QString& filePath) {
+bool Nomaren::IsVideoFile(const QString& filePath) {
 	QFileInfo file(filePath);
 	QString fileExtension = file.suffix();
 	static const QStringList videoExtensions = {"mp4", "avi", "mkv", "mov", "flv", "wmv", "webm", "mpg", "mpeg", "3gp"};
 	return videoExtensions.contains(fileExtension, Qt::CaseInsensitive);
 }
 
-void MainWindow::ProcessFileFromCommandLine(const QString& filePath) {
+void Nomaren::ProcessFileFromCommandLine(const QString& filePath) {
 	if (!imageLabel || !stackedWidget || !videoOutput || !textEdit || !musicWidget) {
 		QMessageBox::critical(this, "Error", "One or more components are not initialized.");
 		return;
@@ -363,7 +363,7 @@ void MainWindow::ProcessFileFromCommandLine(const QString& filePath) {
 	}
 }
 
-void MainWindow::ProcessFileFromUserPrompt() {
+void Nomaren::ProcessFileFromUserPrompt() {
 	bool ok;
 	QString text = QInputDialog::getText(this, tr("Open File"), tr("File Path:"), QLineEdit::Normal, QDir::home().dirName(), &ok);
 	if (ok && !text.isEmpty()) {
@@ -371,7 +371,7 @@ void MainWindow::ProcessFileFromUserPrompt() {
 	}
 }
 
-void MainWindow::keyPressEvent(QKeyEvent* event)
+void Nomaren::keyPressEvent(QKeyEvent* event)
 {
 	switch (event->key())
 	{
@@ -394,7 +394,7 @@ void MainWindow::keyPressEvent(QKeyEvent* event)
 	QMainWindow::keyPressEvent(event);
 }
 
-void MainWindow::mousePressEvent(QMouseEvent* event)
+void Nomaren::mousePressEvent(QMouseEvent* event)
 {
 	switch (event->button())
 	{
@@ -409,7 +409,7 @@ void MainWindow::mousePressEvent(QMouseEvent* event)
 	QMainWindow::mousePressEvent(event);
 }
 
-void MainWindow::wheelEvent(QWheelEvent* event)
+void Nomaren::wheelEvent(QWheelEvent* event)
 {
 	int delta = event->angleDelta().y();
 
@@ -425,7 +425,7 @@ void MainWindow::wheelEvent(QWheelEvent* event)
 	QMainWindow::wheelEvent(event);
 }
 
-void MainWindow::ClosePreviousFile() {
+void Nomaren::ClosePreviousFile() {
 	imageLabel->clear();
 	textEdit->clear();
 	player->stop();
@@ -433,7 +433,7 @@ void MainWindow::ClosePreviousFile() {
 	player->setPosition(0);
 }
 
-void MainWindow::DisplayImage(const QString& filePath) {
+void Nomaren::DisplayImage(const QString& filePath) {
 	QImage image(filePath);
 
 	if (image.isNull()) {
@@ -447,7 +447,7 @@ void MainWindow::DisplayImage(const QString& filePath) {
 	stackedWidget->setCurrentWidget(imageLabel);
 }
 
-void MainWindow::DisplayMusic(const QString& filePath) {
+void Nomaren::DisplayMusic(const QString& filePath) {
 	player->setSource(QUrl::fromLocalFile(filePath));
 
 	if (!player->source().isValid()) {
@@ -459,7 +459,7 @@ void MainWindow::DisplayMusic(const QString& filePath) {
 	player->play();
 }
 
-void MainWindow::DisplayText(const QString& filePath) {
+void Nomaren::DisplayText(const QString& filePath) {
 	QFile text(filePath);
 	if (!text.open(QIODevice::ReadOnly | QIODevice::Text)) {
 		qDebug() << "Could not open text file: " << filePath;
@@ -476,7 +476,7 @@ void MainWindow::DisplayText(const QString& filePath) {
 	stackedWidget->setCurrentWidget(textEdit);
 }
 
-void MainWindow::DisplayVideo(const QString& filePath) {
+void Nomaren::DisplayVideo(const QString& filePath) {
 	player->setSource(QUrl::fromLocalFile(filePath));
 
 	if (!player->source().isValid()) {

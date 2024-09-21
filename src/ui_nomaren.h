@@ -1,13 +1,13 @@
 /********************************************************************************
-** Form generated from reading UI file 'mainwindow.ui'
+** Form generated from reading UI file 'nomaren.ui'
 **
 ** Created by: Qt User Interface Compiler version 6.7.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
 
-#ifndef UI_MAINWINDOW_H
-#define UI_MAINWINDOW_H
+#ifndef UI_NOMAREN_H
+#define UI_NOMAREN_H
 
 #include <QtCore/QVariant>
 #include <QtGui/QAction>
@@ -23,7 +23,7 @@
 
 QT_BEGIN_NAMESPACE
 
-class Ui_MainWindow
+class Ui_Nomaren
 {
 public:
     QAction *actionExit;
@@ -48,67 +48,67 @@ public:
     QToolBar *toolBar;
     QToolBar *playbackToolBar;
 
-    void setupUi(QMainWindow *MainWindow)
+    void setupUi(QMainWindow *Nomaren)
     {
-        if (MainWindow->objectName().isEmpty())
-            MainWindow->setObjectName("MainWindow");
-        MainWindow->resize(960, 540);
-        actionExit = new QAction(MainWindow);
+        if (Nomaren->objectName().isEmpty())
+            Nomaren->setObjectName("Nomaren");
+        Nomaren->resize(960, 540);
+        actionExit = new QAction(Nomaren);
         actionExit->setObjectName("actionExit");
         QIcon icon(QIcon::fromTheme(QIcon::ThemeIcon::ApplicationExit));
         actionExit->setIcon(icon);
         actionExit->setMenuRole(QAction::MenuRole::NoRole);
-        actionZoomIn = new QAction(MainWindow);
+        actionZoomIn = new QAction(Nomaren);
         actionZoomIn->setObjectName("actionZoomIn");
         QIcon icon1(QIcon::fromTheme(QIcon::ThemeIcon::ZoomIn));
         actionZoomIn->setIcon(icon1);
         actionZoomIn->setMenuRole(QAction::MenuRole::NoRole);
-        actionPreferences = new QAction(MainWindow);
+        actionPreferences = new QAction(Nomaren);
         actionPreferences->setObjectName("actionPreferences");
         QIcon icon2(QIcon::fromTheme(QIcon::ThemeIcon::DocumentProperties));
         actionPreferences->setIcon(icon2);
         actionPreferences->setMenuRole(QAction::MenuRole::NoRole);
-        actionOpenMediaFile = new QAction(MainWindow);
+        actionOpenMediaFile = new QAction(Nomaren);
         actionOpenMediaFile->setObjectName("actionOpenMediaFile");
         QIcon icon3(QIcon::fromTheme(QIcon::ThemeIcon::DocumentOpen));
         actionOpenMediaFile->setIcon(icon3);
         actionOpenMediaFile->setMenuRole(QAction::MenuRole::NoRole);
-        actionZoomOut = new QAction(MainWindow);
+        actionZoomOut = new QAction(Nomaren);
         actionZoomOut->setObjectName("actionZoomOut");
         QIcon icon4(QIcon::fromTheme(QIcon::ThemeIcon::ZoomOut));
         actionZoomOut->setIcon(icon4);
         actionZoomOut->setMenuRole(QAction::MenuRole::NoRole);
-        actionMediaPlaybackPause = new QAction(MainWindow);
+        actionMediaPlaybackPause = new QAction(Nomaren);
         actionMediaPlaybackPause->setObjectName("actionMediaPlaybackPause");
         QIcon icon5(QIcon::fromTheme(QIcon::ThemeIcon::MediaPlaybackPause));
         actionMediaPlaybackPause->setIcon(icon5);
         actionMediaPlaybackPause->setShortcutContext(Qt::ShortcutContext::WindowShortcut);
         actionMediaPlaybackPause->setMenuRole(QAction::MenuRole::NoRole);
-        actionMediaPlaybackStart = new QAction(MainWindow);
+        actionMediaPlaybackStart = new QAction(Nomaren);
         actionMediaPlaybackStart->setObjectName("actionMediaPlaybackStart");
         QIcon icon6(QIcon::fromTheme(QIcon::ThemeIcon::MediaPlaybackStart));
         actionMediaPlaybackStart->setIcon(icon6);
         actionMediaPlaybackStart->setMenuRole(QAction::MenuRole::NoRole);
-        actionMediaPlaybackStop = new QAction(MainWindow);
+        actionMediaPlaybackStop = new QAction(Nomaren);
         actionMediaPlaybackStop->setObjectName("actionMediaPlaybackStop");
         QIcon icon7(QIcon::fromTheme(QIcon::ThemeIcon::MediaPlaybackStop));
         actionMediaPlaybackStop->setIcon(icon7);
         actionMediaPlaybackStop->setMenuRole(QAction::MenuRole::NoRole);
-        actionDocumentProperties = new QAction(MainWindow);
+        actionDocumentProperties = new QAction(Nomaren);
         actionDocumentProperties->setObjectName("actionDocumentProperties");
         actionDocumentProperties->setIcon(icon2);
         actionDocumentProperties->setMenuRole(QAction::MenuRole::NoRole);
-        actionToggleVolume = new QAction(MainWindow);
+        actionToggleVolume = new QAction(Nomaren);
         actionToggleVolume->setObjectName("actionToggleVolume");
         QIcon icon8(QIcon::fromTheme(QIcon::ThemeIcon::AudioVolumeHigh));
         actionToggleVolume->setIcon(icon8);
         actionToggleVolume->setMenuRole(QAction::MenuRole::NoRole);
-        actionAbout = new QAction(MainWindow);
+        actionAbout = new QAction(Nomaren);
         actionAbout->setObjectName("actionAbout");
         QIcon icon9(QIcon::fromTheme(QIcon::ThemeIcon::HelpAbout));
         actionAbout->setIcon(icon9);
         actionAbout->setMenuRole(QAction::MenuRole::NoRole);
-        centralwidget = new QWidget(MainWindow);
+        centralwidget = new QWidget(Nomaren);
         centralwidget->setObjectName("centralwidget");
         verticalLayout = new QVBoxLayout(centralwidget);
         verticalLayout->setObjectName("verticalLayout");
@@ -135,8 +135,8 @@ public:
 
         verticalLayout->addWidget(playbackSlider);
 
-        MainWindow->setCentralWidget(centralwidget);
-        menuBar = new QMenuBar(MainWindow);
+        Nomaren->setCentralWidget(centralwidget);
+        menuBar = new QMenuBar(Nomaren);
         menuBar->setObjectName("menuBar");
         menuBar->setGeometry(QRect(0, 0, 960, 22));
         menuFile = new QMenu(menuBar);
@@ -148,13 +148,13 @@ public:
         menuFile->setSizePolicy(sizePolicy1);
         menuHelp = new QMenu(menuBar);
         menuHelp->setObjectName("menuHelp");
-        MainWindow->setMenuBar(menuBar);
-        toolBar = new QToolBar(MainWindow);
+        Nomaren->setMenuBar(menuBar);
+        toolBar = new QToolBar(Nomaren);
         toolBar->setObjectName("toolBar");
-        MainWindow->addToolBar(Qt::ToolBarArea::TopToolBarArea, toolBar);
-        playbackToolBar = new QToolBar(MainWindow);
+        Nomaren->addToolBar(Qt::ToolBarArea::TopToolBarArea, toolBar);
+        playbackToolBar = new QToolBar(Nomaren);
         playbackToolBar->setObjectName("playbackToolBar");
-        MainWindow->addToolBar(Qt::ToolBarArea::BottomToolBarArea, playbackToolBar);
+        Nomaren->addToolBar(Qt::ToolBarArea::BottomToolBarArea, playbackToolBar);
 
         menuBar->addAction(menuFile->menuAction());
         menuBar->addAction(menuHelp->menuAction());
@@ -171,55 +171,55 @@ public:
         toolBar->addSeparator();
         toolBar->addAction(actionToggleVolume);
 
-        retranslateUi(MainWindow);
+        retranslateUi(Nomaren);
 
-        QMetaObject::connectSlotsByName(MainWindow);
+        QMetaObject::connectSlotsByName(Nomaren);
     } // setupUi
 
-    void retranslateUi(QMainWindow *MainWindow)
+    void retranslateUi(QMainWindow *Nomaren)
     {
-        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "nomaren", nullptr));
-        actionExit->setText(QCoreApplication::translate("MainWindow", "Exit", nullptr));
+        Nomaren->setWindowTitle(QCoreApplication::translate("Nomaren", "nomaren", nullptr));
+        actionExit->setText(QCoreApplication::translate("Nomaren", "Exit", nullptr));
 #if QT_CONFIG(tooltip)
-        actionExit->setToolTip(QCoreApplication::translate("MainWindow", "Exit", nullptr));
+        actionExit->setToolTip(QCoreApplication::translate("Nomaren", "Exit", nullptr));
 #endif // QT_CONFIG(tooltip)
-        actionZoomIn->setText(QCoreApplication::translate("MainWindow", "Zoom In", nullptr));
-        actionPreferences->setText(QCoreApplication::translate("MainWindow", "Preferences", nullptr));
-        actionOpenMediaFile->setText(QCoreApplication::translate("MainWindow", "Open Media File", nullptr));
-        actionZoomOut->setText(QCoreApplication::translate("MainWindow", "Zoom Out", nullptr));
-        actionMediaPlaybackPause->setText(QCoreApplication::translate("MainWindow", "Media Playback Pause", nullptr));
+        actionZoomIn->setText(QCoreApplication::translate("Nomaren", "Zoom In", nullptr));
+        actionPreferences->setText(QCoreApplication::translate("Nomaren", "Preferences", nullptr));
+        actionOpenMediaFile->setText(QCoreApplication::translate("Nomaren", "Open Media File", nullptr));
+        actionZoomOut->setText(QCoreApplication::translate("Nomaren", "Zoom Out", nullptr));
+        actionMediaPlaybackPause->setText(QCoreApplication::translate("Nomaren", "Media Playback Pause", nullptr));
 #if QT_CONFIG(tooltip)
-        actionMediaPlaybackPause->setToolTip(QCoreApplication::translate("MainWindow", "Media Playback Pause", nullptr));
+        actionMediaPlaybackPause->setToolTip(QCoreApplication::translate("Nomaren", "Media Playback Pause", nullptr));
 #endif // QT_CONFIG(tooltip)
-        actionMediaPlaybackStart->setText(QCoreApplication::translate("MainWindow", "Media Playback Start", nullptr));
+        actionMediaPlaybackStart->setText(QCoreApplication::translate("Nomaren", "Media Playback Start", nullptr));
 #if QT_CONFIG(tooltip)
-        actionMediaPlaybackStart->setToolTip(QCoreApplication::translate("MainWindow", "Media Playback Start", nullptr));
+        actionMediaPlaybackStart->setToolTip(QCoreApplication::translate("Nomaren", "Media Playback Start", nullptr));
 #endif // QT_CONFIG(tooltip)
-        actionMediaPlaybackStop->setText(QCoreApplication::translate("MainWindow", "Media Playback Stop", nullptr));
+        actionMediaPlaybackStop->setText(QCoreApplication::translate("Nomaren", "Media Playback Stop", nullptr));
 #if QT_CONFIG(tooltip)
-        actionMediaPlaybackStop->setToolTip(QCoreApplication::translate("MainWindow", "Media Playback Stop", nullptr));
+        actionMediaPlaybackStop->setToolTip(QCoreApplication::translate("Nomaren", "Media Playback Stop", nullptr));
 #endif // QT_CONFIG(tooltip)
-        actionDocumentProperties->setText(QCoreApplication::translate("MainWindow", "Document Properties", nullptr));
+        actionDocumentProperties->setText(QCoreApplication::translate("Nomaren", "Document Properties", nullptr));
 #if QT_CONFIG(tooltip)
-        actionDocumentProperties->setToolTip(QCoreApplication::translate("MainWindow", "Document Properties", nullptr));
+        actionDocumentProperties->setToolTip(QCoreApplication::translate("Nomaren", "Document Properties", nullptr));
 #endif // QT_CONFIG(tooltip)
-        actionToggleVolume->setText(QCoreApplication::translate("MainWindow", "Toggle Audio Volume", nullptr));
+        actionToggleVolume->setText(QCoreApplication::translate("Nomaren", "Toggle Audio Volume", nullptr));
 #if QT_CONFIG(tooltip)
-        actionToggleVolume->setToolTip(QCoreApplication::translate("MainWindow", "Toggle Audio Volume", nullptr));
+        actionToggleVolume->setToolTip(QCoreApplication::translate("Nomaren", "Toggle Audio Volume", nullptr));
 #endif // QT_CONFIG(tooltip)
-        actionAbout->setText(QCoreApplication::translate("MainWindow", "About", nullptr));
-        menuFile->setTitle(QCoreApplication::translate("MainWindow", "File", nullptr));
-        menuHelp->setTitle(QCoreApplication::translate("MainWindow", "Help", nullptr));
-        toolBar->setWindowTitle(QCoreApplication::translate("MainWindow", "toolBar", nullptr));
-        playbackToolBar->setWindowTitle(QCoreApplication::translate("MainWindow", "toolBar_2", nullptr));
+        actionAbout->setText(QCoreApplication::translate("Nomaren", "About", nullptr));
+        menuFile->setTitle(QCoreApplication::translate("Nomaren", "File", nullptr));
+        menuHelp->setTitle(QCoreApplication::translate("Nomaren", "Help", nullptr));
+        toolBar->setWindowTitle(QCoreApplication::translate("Nomaren", "toolBar", nullptr));
+        playbackToolBar->setWindowTitle(QCoreApplication::translate("Nomaren", "toolBar_2", nullptr));
     } // retranslateUi
 
 };
 
 namespace Ui {
-    class MainWindow: public Ui_MainWindow {};
+    class Nomaren: public Ui_Nomaren {};
 } // namespace Ui
 
 QT_END_NAMESPACE
 
-#endif // UI_MAINWINDOW_H
+#endif // UI_NOMAREN_H

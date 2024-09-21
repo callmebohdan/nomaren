@@ -35,8 +35,8 @@ mkdir "%BUILD_DIR%"
 cd "%BUILD_DIR%"
 
 if exist "%QT_PATH%\bin\uic.exe" (
-    echo Generating ui_mainwindow.h from mainwindow.ui...
-    "%QT_PATH%\bin\uic.exe" -o "%SRC_DIR%\ui_mainwindow.h" "%SRC_DIR%\mainwindow.ui"
+    echo Generating ui_nomaren.h from nomaren.ui...
+    "%QT_PATH%\bin\uic.exe" -o "%SRC_DIR%\ui_nomaren.h" "%SRC_DIR%\nomaren.ui"
 )
 
 echo Configuring the project with CMake...

@@ -1,6 +1,6 @@
 #include <qapplication.h>
 #include <qstring.h>
-#include "mainwindow.hpp"
+#include "nomaren.hpp"
 
 int main(int argc, char* argv[]) {
 	QApplication application(argc, argv);
@@ -10,11 +10,11 @@ int main(int argc, char* argv[]) {
 		mediaFilePath = argv[1];
 	}
 
-	MainWindow mainWindow;
-	mainWindow.show();
+	Nomaren nomaren;
+	nomaren.show();
 
 	if (!mediaFilePath.isEmpty()) {
-		mainWindow.ProcessFileFromCommandLine(mediaFilePath);
+		nomaren.ProcessFileFromCommandLine(mediaFilePath);
 	}
 
 	return application.exec();

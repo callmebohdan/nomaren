@@ -1,5 +1,5 @@
-#ifndef MAINWINDOW_HPP
-#define MAINWINDOW_HPP
+#ifndef NOMAREN_HPP
+#define NOMAREN_HPP
 
 #include <qaudiooutput.h>
 #include <qevent.h>
@@ -14,14 +14,14 @@
 #include <qvideowidget.h>
 #include <qwidget.h>
 
-namespace Ui { class MainWindow; }
+namespace Ui { class Nomaren; }
 
-class MainWindow : public QMainWindow {
+class Nomaren : public QMainWindow {
 	Q_OBJECT
 
 public:
-	explicit MainWindow(QWidget* parent = nullptr);
-	~MainWindow();
+	explicit Nomaren(QWidget* parent = nullptr);
+	~Nomaren();
 
 	void DecreaseVolume();
 	void ToggleFullScreen();
@@ -49,7 +49,7 @@ public slots:
 	void wheelEvent(QWheelEvent* event);
 
 private:
-	Ui::MainWindow* ui;
+	Ui::Nomaren* ui;
 	QLabel* imageLabel;
 	QPlainTextEdit* textEdit;
 	QMediaPlayer* player;
@@ -59,4 +59,4 @@ private:
 	QStackedWidget* stackedWidget;
 };
 
-#endif // MAINWINDOW_H
+#endif // NOMAREN_HPP
