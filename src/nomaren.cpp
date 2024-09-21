@@ -170,8 +170,7 @@ void Nomaren::ToggleFullScreen() {
 	}
 }
 
-void Nomaren::TogglePausePlay()
-{
+void Nomaren::TogglePausePlay() {
 	if (player->audioOutput() || player->videoOutput()) {
 		if (player->isPlaying()) {
 			player->pause();
