@@ -68,5 +68,3 @@ if exist "%BUILD_DIR%\src\Release\nomaren.exe" (
 )
 
 endlocal
-
-pause
