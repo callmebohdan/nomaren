@@ -15,7 +15,6 @@
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
-#include <QtWidgets/QSlider>
 #include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QVBoxLayout>
@@ -28,7 +27,6 @@ class Ui_Nomaren
 public:
     QAction *actionExit;
     QAction *actionZoomIn;
-    QAction *actionPreferences;
     QAction *actionOpenMediaFile;
     QAction *actionZoomOut;
     QAction *actionMediaPlaybackPause;
@@ -39,9 +37,7 @@ public:
     QAction *actionAbout;
     QWidget *centralwidget;
     QVBoxLayout *verticalLayout;
-    QSlider *volumeSlider;
     QStackedWidget *stackedWidget;
-    QSlider *playbackSlider;
     QMenuBar *menuBar;
     QMenu *menuFile;
     QMenu *menuHelp;
@@ -57,83 +53,51 @@ public:
         actionExit->setObjectName("actionExit");
         QIcon icon(QIcon::fromTheme(QIcon::ThemeIcon::ApplicationExit));
         actionExit->setIcon(icon);
-        actionExit->setMenuRole(QAction::MenuRole::NoRole);
         actionZoomIn = new QAction(Nomaren);
         actionZoomIn->setObjectName("actionZoomIn");
         QIcon icon1(QIcon::fromTheme(QIcon::ThemeIcon::ZoomIn));
         actionZoomIn->setIcon(icon1);
-        actionZoomIn->setMenuRole(QAction::MenuRole::NoRole);
-        actionPreferences = new QAction(Nomaren);
-        actionPreferences->setObjectName("actionPreferences");
-        QIcon icon2(QIcon::fromTheme(QIcon::ThemeIcon::DocumentProperties));
-        actionPreferences->setIcon(icon2);
-        actionPreferences->setMenuRole(QAction::MenuRole::NoRole);
         actionOpenMediaFile = new QAction(Nomaren);
         actionOpenMediaFile->setObjectName("actionOpenMediaFile");
-        QIcon icon3(QIcon::fromTheme(QIcon::ThemeIcon::DocumentOpen));
-        actionOpenMediaFile->setIcon(icon3);
-        actionOpenMediaFile->setMenuRole(QAction::MenuRole::NoRole);
+        QIcon icon2(QIcon::fromTheme(QIcon::ThemeIcon::DocumentOpen));
+        actionOpenMediaFile->setIcon(icon2);
         actionZoomOut = new QAction(Nomaren);
         actionZoomOut->setObjectName("actionZoomOut");
-        QIcon icon4(QIcon::fromTheme(QIcon::ThemeIcon::ZoomOut));
-        actionZoomOut->setIcon(icon4);
-        actionZoomOut->setMenuRole(QAction::MenuRole::NoRole);
+        QIcon icon3(QIcon::fromTheme(QIcon::ThemeIcon::ZoomOut));
+        actionZoomOut->setIcon(icon3);
         actionMediaPlaybackPause = new QAction(Nomaren);
         actionMediaPlaybackPause->setObjectName("actionMediaPlaybackPause");
-        QIcon icon5(QIcon::fromTheme(QIcon::ThemeIcon::MediaPlaybackPause));
-        actionMediaPlaybackPause->setIcon(icon5);
+        QIcon icon4(QIcon::fromTheme(QIcon::ThemeIcon::MediaPlaybackPause));
+        actionMediaPlaybackPause->setIcon(icon4);
         actionMediaPlaybackPause->setShortcutContext(Qt::ShortcutContext::WindowShortcut);
-        actionMediaPlaybackPause->setMenuRole(QAction::MenuRole::NoRole);
         actionMediaPlaybackStart = new QAction(Nomaren);
         actionMediaPlaybackStart->setObjectName("actionMediaPlaybackStart");
-        QIcon icon6(QIcon::fromTheme(QIcon::ThemeIcon::MediaPlaybackStart));
-        actionMediaPlaybackStart->setIcon(icon6);
-        actionMediaPlaybackStart->setMenuRole(QAction::MenuRole::NoRole);
+        QIcon icon5(QIcon::fromTheme(QIcon::ThemeIcon::MediaPlaybackStart));
+        actionMediaPlaybackStart->setIcon(icon5);
         actionMediaPlaybackStop = new QAction(Nomaren);
         actionMediaPlaybackStop->setObjectName("actionMediaPlaybackStop");
-        QIcon icon7(QIcon::fromTheme(QIcon::ThemeIcon::MediaPlaybackStop));
-        actionMediaPlaybackStop->setIcon(icon7);
-        actionMediaPlaybackStop->setMenuRole(QAction::MenuRole::NoRole);
+        QIcon icon6(QIcon::fromTheme(QIcon::ThemeIcon::MediaPlaybackStop));
+        actionMediaPlaybackStop->setIcon(icon6);
         actionDocumentProperties = new QAction(Nomaren);
         actionDocumentProperties->setObjectName("actionDocumentProperties");
-        actionDocumentProperties->setIcon(icon2);
-        actionDocumentProperties->setMenuRole(QAction::MenuRole::NoRole);
+        QIcon icon7(QIcon::fromTheme(QIcon::ThemeIcon::DocumentProperties));
+        actionDocumentProperties->setIcon(icon7);
         actionToggleVolume = new QAction(Nomaren);
         actionToggleVolume->setObjectName("actionToggleVolume");
         QIcon icon8(QIcon::fromTheme(QIcon::ThemeIcon::AudioVolumeHigh));
         actionToggleVolume->setIcon(icon8);
-        actionToggleVolume->setMenuRole(QAction::MenuRole::NoRole);
         actionAbout = new QAction(Nomaren);
         actionAbout->setObjectName("actionAbout");
         QIcon icon9(QIcon::fromTheme(QIcon::ThemeIcon::HelpAbout));
         actionAbout->setIcon(icon9);
-        actionAbout->setMenuRole(QAction::MenuRole::NoRole);
         centralwidget = new QWidget(Nomaren);
         centralwidget->setObjectName("centralwidget");
         verticalLayout = new QVBoxLayout(centralwidget);
         verticalLayout->setObjectName("verticalLayout");
-        volumeSlider = new QSlider(centralwidget);
-        volumeSlider->setObjectName("volumeSlider");
-        QSizePolicy sizePolicy(QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Fixed);
-        sizePolicy.setHorizontalStretch(0);
-        sizePolicy.setVerticalStretch(0);
-        sizePolicy.setHeightForWidth(volumeSlider->sizePolicy().hasHeightForWidth());
-        volumeSlider->setSizePolicy(sizePolicy);
-        volumeSlider->setMaximumSize(QSize(75, 16777215));
-        volumeSlider->setOrientation(Qt::Orientation::Horizontal);
-
-        verticalLayout->addWidget(volumeSlider);
-
         stackedWidget = new QStackedWidget(centralwidget);
         stackedWidget->setObjectName("stackedWidget");
 
         verticalLayout->addWidget(stackedWidget);
-
-        playbackSlider = new QSlider(centralwidget);
-        playbackSlider->setObjectName("playbackSlider");
-        playbackSlider->setOrientation(Qt::Orientation::Horizontal);
-
-        verticalLayout->addWidget(playbackSlider);
 
         Nomaren->setCentralWidget(centralwidget);
         menuBar = new QMenuBar(Nomaren);
@@ -141,11 +105,11 @@ public:
         menuBar->setGeometry(QRect(0, 0, 960, 22));
         menuFile = new QMenu(menuBar);
         menuFile->setObjectName("menuFile");
-        QSizePolicy sizePolicy1(QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Minimum);
-        sizePolicy1.setHorizontalStretch(0);
-        sizePolicy1.setVerticalStretch(0);
-        sizePolicy1.setHeightForWidth(menuFile->sizePolicy().hasHeightForWidth());
-        menuFile->setSizePolicy(sizePolicy1);
+        QSizePolicy sizePolicy(QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Minimum);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(menuFile->sizePolicy().hasHeightForWidth());
+        menuFile->setSizePolicy(sizePolicy);
         menuHelp = new QMenu(menuBar);
         menuHelp->setObjectName("menuHelp");
         Nomaren->setMenuBar(menuBar);
@@ -162,14 +126,20 @@ public:
         menuFile->addSeparator();
         menuHelp->addAction(actionAbout);
         toolBar->addAction(actionOpenMediaFile);
+        toolBar->addSeparator();
         toolBar->addAction(actionExit);
-        toolBar->addAction(actionDocumentProperties);
         toolBar->addSeparator();
         toolBar->addAction(actionMediaPlaybackPause);
         toolBar->addAction(actionMediaPlaybackStart);
         toolBar->addAction(actionMediaPlaybackStop);
         toolBar->addSeparator();
         toolBar->addAction(actionToggleVolume);
+        toolBar->addSeparator();
+        toolBar->addAction(actionZoomIn);
+        toolBar->addAction(actionZoomOut);
+        toolBar->addSeparator();
+        toolBar->addAction(actionDocumentProperties);
+        toolBar->addSeparator();
 
         retranslateUi(Nomaren);
 
@@ -184,7 +154,6 @@ public:
         actionExit->setToolTip(QCoreApplication::translate("Nomaren", "Exit", nullptr));
 #endif // QT_CONFIG(tooltip)
         actionZoomIn->setText(QCoreApplication::translate("Nomaren", "Zoom In", nullptr));
-        actionPreferences->setText(QCoreApplication::translate("Nomaren", "Preferences", nullptr));
         actionOpenMediaFile->setText(QCoreApplication::translate("Nomaren", "Open Media File", nullptr));
         actionZoomOut->setText(QCoreApplication::translate("Nomaren", "Zoom Out", nullptr));
         actionMediaPlaybackPause->setText(QCoreApplication::translate("Nomaren", "Media Playback Pause", nullptr));
@@ -211,7 +180,7 @@ public:
         menuFile->setTitle(QCoreApplication::translate("Nomaren", "File", nullptr));
         menuHelp->setTitle(QCoreApplication::translate("Nomaren", "Help", nullptr));
         toolBar->setWindowTitle(QCoreApplication::translate("Nomaren", "toolBar", nullptr));
-        playbackToolBar->setWindowTitle(QCoreApplication::translate("Nomaren", "toolBar_2", nullptr));
+        playbackToolBar->setWindowTitle(QCoreApplication::translate("Nomaren", "playbackToolBar", nullptr));
     } // retranslateUi
 
 };

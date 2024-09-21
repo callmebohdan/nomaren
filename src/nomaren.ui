@@ -16,33 +16,7 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="QSlider" name="volumeSlider">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>75</width>
-        <height>16777215</height>
-       </size>
-      </property>
-      <property name="orientation">
-       <enum>Qt::Orientation::Horizontal</enum>
-      </property>
-     </widget>
-    </item>
-    <item>
      <widget class="QStackedWidget" name="stackedWidget"/>
-    </item>
-    <item>
-     <widget class="QSlider" name="playbackSlider">
-      <property name="orientation">
-       <enum>Qt::Orientation::Horizontal</enum>
-      </property>
-     </widget>
     </item>
    </layout>
   </widget>
@@ -88,18 +62,25 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionOpenMediaFile"/>
+   <addaction name="separator"/>
    <addaction name="actionExit"/>
-   <addaction name="actionDocumentProperties"/>
    <addaction name="separator"/>
    <addaction name="actionMediaPlaybackPause"/>
    <addaction name="actionMediaPlaybackStart"/>
    <addaction name="actionMediaPlaybackStop"/>
    <addaction name="separator"/>
    <addaction name="actionToggleVolume"/>
+   <addaction name="separator"/>
+   <addaction name="actionZoomIn"/>
+   <addaction name="actionZoomOut"/>
+   <addaction name="separator"/>
+   <addaction name="actionDocumentProperties"/>
+   <addaction name="separator"/>
+   <addaction name="actionAbout"/>
   </widget>
   <widget class="QToolBar" name="playbackToolBar">
    <property name="windowTitle">
-    <string>toolBar_2</string>
+    <string>playbackToolBar</string>
    </property>
    <attribute name="toolBarArea">
     <enum>BottomToolBarArea</enum>
@@ -118,9 +99,6 @@
    <property name="toolTip">
     <string>Exit</string>
    </property>
-   <property name="menuRole">
-    <enum>QAction::MenuRole::NoRole</enum>
-   </property>
   </action>
   <action name="actionZoomIn">
    <property name="icon">
@@ -128,20 +106,6 @@
    </property>
    <property name="text">
     <string>Zoom In</string>
-   </property>
-   <property name="menuRole">
-    <enum>QAction::MenuRole::NoRole</enum>
-   </property>
-  </action>
-  <action name="actionPreferences">
-   <property name="icon">
-    <iconset theme="QIcon::ThemeIcon::DocumentProperties"/>
-   </property>
-   <property name="text">
-    <string>Preferences</string>
-   </property>
-   <property name="menuRole">
-    <enum>QAction::MenuRole::NoRole</enum>
    </property>
   </action>
   <action name="actionOpenMediaFile">
@@ -151,9 +115,6 @@
    <property name="text">
     <string>Open Media File</string>
    </property>
-   <property name="menuRole">
-    <enum>QAction::MenuRole::NoRole</enum>
-   </property>
   </action>
   <action name="actionZoomOut">
    <property name="icon">
@@ -161,9 +122,6 @@
    </property>
    <property name="text">
     <string>Zoom Out</string>
-   </property>
-   <property name="menuRole">
-    <enum>QAction::MenuRole::NoRole</enum>
    </property>
   </action>
   <action name="actionMediaPlaybackPause">
@@ -179,9 +137,6 @@
    <property name="shortcutContext">
     <enum>Qt::ShortcutContext::WindowShortcut</enum>
    </property>
-   <property name="menuRole">
-    <enum>QAction::MenuRole::NoRole</enum>
-   </property>
   </action>
   <action name="actionMediaPlaybackStart">
    <property name="icon">
@@ -192,9 +147,6 @@
    </property>
    <property name="toolTip">
     <string>Media Playback Start</string>
-   </property>
-   <property name="menuRole">
-    <enum>QAction::MenuRole::NoRole</enum>
    </property>
   </action>
   <action name="actionMediaPlaybackStop">
@@ -207,9 +159,6 @@
    <property name="toolTip">
     <string>Media Playback Stop</string>
    </property>
-   <property name="menuRole">
-    <enum>QAction::MenuRole::NoRole</enum>
-   </property>
   </action>
   <action name="actionDocumentProperties">
    <property name="icon">
@@ -220,9 +169,6 @@
    </property>
    <property name="toolTip">
     <string>Document Properties</string>
-   </property>
-   <property name="menuRole">
-    <enum>QAction::MenuRole::NoRole</enum>
    </property>
   </action>
   <action name="actionToggleVolume">
@@ -235,9 +181,6 @@
    <property name="toolTip">
     <string>Toggle Audio Volume</string>
    </property>
-   <property name="menuRole">
-    <enum>QAction::MenuRole::NoRole</enum>
-   </property>
   </action>
   <action name="actionAbout">
    <property name="icon">
@@ -245,9 +188,6 @@
    </property>
    <property name="text">
     <string>About</string>
-   </property>
-   <property name="menuRole">
-    <enum>QAction::MenuRole::NoRole</enum>
    </property>
   </action>
  </widget>
