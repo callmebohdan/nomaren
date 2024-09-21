@@ -390,8 +390,7 @@ void Nomaren::ProcessFileFromUserPrompt() {
 	}
 }
 
-void Nomaren::keyPressEvent(QKeyEvent* event)
-{
+void Nomaren::keyPressEvent(QKeyEvent* event) {
 	switch (event->key())
 	{
 	case Qt::Key_Space:
@@ -413,8 +412,7 @@ void Nomaren::keyPressEvent(QKeyEvent* event)
 	QMainWindow::keyPressEvent(event);
 }
 
-void Nomaren::mousePressEvent(QMouseEvent* event)
-{
+void Nomaren::mousePressEvent(QMouseEvent* event) {
 	switch (event->button())
 	{
 	case Qt::LeftButton:
@@ -428,8 +426,7 @@ void Nomaren::mousePressEvent(QMouseEvent* event)
 	QMainWindow::mousePressEvent(event);
 }
 
-void Nomaren::wheelEvent(QWheelEvent* event)
-{
+void Nomaren::wheelEvent(QWheelEvent* event) {
 	int delta = event->angleDelta().y();
 
 	if (delta > 0)
