@@ -51,6 +51,8 @@ Nomaren::Nomaren(QWidget* parent)
 	SetupWidgets();
 	SetupActions();
 	SetupVolumeSlider();
+	SetupPlaybackSlider();
+}
 
 void Nomaren::SetupWindow() {
 	move(screen()->geometry().center() - frameGeometry().center());
@@ -97,14 +99,18 @@ void Nomaren::SetupVolumeSlider() {
 	connect(volumeSlider, &QSlider::valueChanged, this, [=](int value) { audioOutput->setVolume(value / 100.0); });
 }
 
-	if (player) {
+void Nomaren::SetupPlaybackSlider() {
+	if (player->videoOutput()) {
+		QSlider* playbackSlider(new QSlider(this));
+		playbackSlider->setOrientation(Qt::Orientation::Horizontal);
+		playbackSlider->setMaximumHeight(30);
 		QLabel* playerDuration(new QLabel(this));
 		connect(player, &QMediaPlayer::durationChanged, this, [=](qint64 duration) {
-			ui->playbackSlider->setRange(0, duration);
+			playbackSlider->setRange(0, duration);
 			playerDuration->setText("0/" + convertMillisecondsToHMS(duration));
 			});
 		connect(player, &QMediaPlayer::positionChanged, this, [=](qint64 position) {
-			ui->playbackSlider->setValue(position);
+			playbackSlider->setValue(position);
 			playerDuration->setText(convertMillisecondsToHMS(position) + "/" + convertMillisecondsToHMS(player->duration()));
 			});
 		connect(player, &QMediaPlayer::mediaStatusChanged, this, [=](QMediaPlayer::MediaStatus status) {
@@ -112,11 +118,11 @@ void Nomaren::SetupVolumeSlider() {
 				playerDuration->setText("0/" + convertMillisecondsToHMS(player->duration()));
 			}
 			});
-		connect(ui->playbackSlider, &QSlider::valueChanged, this, [=](int value) { player->setPosition(value); });
+		connect(playbackSlider, &QSlider::valueChanged, this, [=](int value) { player->setPosition(value); });
 		playerDuration->setMaximumHeight(30);
-		ui->playbackSlider->setMaximumHeight(30);
+		playbackSlider->setMaximumHeight(30);
 		QHBoxLayout* layout = new QHBoxLayout;
-		layout->addWidget(ui->playbackSlider);
+		layout->addWidget(playbackSlider);
 		layout->addWidget(playerDuration);
 		layout->setStretch(0, 30);
 		layout->setStretch(1, 1);
