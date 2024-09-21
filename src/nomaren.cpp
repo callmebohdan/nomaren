@@ -1,4 +1,3 @@
-#include <cmath>
 #include <qaction.h>
 #include <qaudiooutput.h>
 #include <qboxlayout.h>
@@ -33,7 +32,6 @@
 #include <qvariant.h>
 #include <qvideowidget.h>
 #include <qwidget.h>
-#include <utility>
 #include "nomaren.hpp"
 #include "ui_nomaren.h"
 
