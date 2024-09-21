@@ -24,6 +24,7 @@ public:
 	~Nomaren();
 
 	void SetupWindow();
+	void SetupWidgets();
 	void DecreaseVolume();
 	void ToggleFullScreen();
 	void IncreaseVolume();

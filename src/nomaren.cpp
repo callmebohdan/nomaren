@@ -48,14 +48,14 @@ Nomaren::Nomaren(QWidget* parent)
 {
 	ui->setupUi(this);
 	SetupWindow();
+	SetupWidgets();
 
 void Nomaren::SetupWindow() {
 	move(screen()->geometry().center() - frameGeometry().center());
 	setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
 }
 
-	imageLabel->setAlignment(Qt::AlignCenter);
-
+void Nomaren::SetupWidgets() {
 	stackedWidget->addWidget(imageLabel);
 	stackedWidget->addWidget(musicWidget);
 	stackedWidget->addWidget(textEdit);
@@ -71,6 +71,7 @@ void Nomaren::SetupWindow() {
 
 	player->setVideoOutput(videoOutput);
 	player->setAudioOutput(audioOutput);
+}
 
 	connect(ui->actionOpenMediaFile, &QAction::triggered, this, &Nomaren::ProcessFileFromUserPrompt);
 	connect(ui->actionMediaPlaybackStart, &QAction::triggered, player, &QMediaPlayer::play);
@@ -443,6 +444,8 @@ void Nomaren::DisplayImage(const QString& filePath) {
 		QMessageBox::critical(this, "Error", "Failed to load image: " + filePath);
 		return;
 	}
+
+	imageLabel->setAlignment(Qt::AlignCenter);
 	imageLabel->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 	imageLabel->setPixmap(QPixmap::fromImage(image));
 
