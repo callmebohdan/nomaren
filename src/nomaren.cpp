@@ -49,6 +49,7 @@ Nomaren::Nomaren(QWidget* parent)
 	ui->setupUi(this);
 	SetupWindow();
 	SetupWidgets();
+	SetupActions();
 
 void Nomaren::SetupWindow() {
 	move(screen()->geometry().center() - frameGeometry().center());
@@ -73,14 +74,17 @@ void Nomaren::SetupWidgets() {
 	player->setAudioOutput(audioOutput);
 }
 
+void Nomaren::SetupActions() {
 	connect(ui->actionOpenMediaFile, &QAction::triggered, this, &Nomaren::ProcessFileFromUserPrompt);
-	connect(ui->actionMediaPlaybackStart, &QAction::triggered, player, &QMediaPlayer::play);
+	connect(ui->actionExit, &QAction::triggered, this, &QMainWindow::close);
 	connect(ui->actionMediaPlaybackPause, &QAction::triggered, player, &QMediaPlayer::pause);
+	connect(ui->actionMediaPlaybackStart, &QAction::triggered, player, &QMediaPlayer::play);
 	connect(ui->actionMediaPlaybackStop, &QAction::triggered, player, &QMediaPlayer::stop);
 	connect(ui->actionToggleVolume, &QAction::triggered, this, &Nomaren::ToggleVolume);
 	connect(ui->actionAbout, &QAction::triggered, this, &Nomaren::ShowAboutSection);
 	connect(ui->actionDocumentProperties, &QAction::triggered, this, &Nomaren::ShowDocumentProperties);
-	connect(ui->actionExit, &QAction::triggered, this, &QMainWindow::close);
+	connect(ui->actionAbout, &QAction::triggered, this, &Nomaren::ShowAboutSection);
+}
 
 	ui->volumeSlider->setRange(0, 100);
 	ui->volumeSlider->setValue(player->audioOutput()->volume() * 100);
