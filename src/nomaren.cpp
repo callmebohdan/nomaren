@@ -100,35 +100,45 @@ void Nomaren::SetupVolumeSlider() {
 }
 
 void Nomaren::SetupPlaybackSlider() {
-	if (player->videoOutput()) {
+	if (player->videoOutput() || player->audioOutput()) {
 		QSlider* playbackSlider(new QSlider(this));
 		playbackSlider->setOrientation(Qt::Orientation::Horizontal);
 		playbackSlider->setMaximumHeight(30);
+
 		QLabel* playerDuration(new QLabel(this));
-		connect(player, &QMediaPlayer::durationChanged, this, [=](qint64 duration) {
-			playbackSlider->setRange(0, duration);
-			playerDuration->setText("0/" + convertMillisecondsToHMS(duration));
-			});
-		connect(player, &QMediaPlayer::positionChanged, this, [=](qint64 position) {
-			playbackSlider->setValue(position);
-			playerDuration->setText(convertMillisecondsToHMS(position) + "/" + convertMillisecondsToHMS(player->duration()));
-			});
-		connect(player, &QMediaPlayer::mediaStatusChanged, this, [=](QMediaPlayer::MediaStatus status) {
-			if (status == QMediaPlayer::LoadedMedia || status == QMediaPlayer::BufferedMedia) {
-				playerDuration->setText("0/" + convertMillisecondsToHMS(player->duration()));
-			}
-			});
-		connect(playbackSlider, &QSlider::valueChanged, this, [=](int value) { player->setPosition(value); });
 		playerDuration->setMaximumHeight(30);
-		playbackSlider->setMaximumHeight(30);
+
 		QHBoxLayout* layout = new QHBoxLayout;
+		layout->setStretch(0, 1);
+		layout->setStretch(1, 0);
+
 		layout->addWidget(playbackSlider);
 		layout->addWidget(playerDuration);
-		layout->setStretch(0, 30);
-		layout->setStretch(1, 1);
+
 		QWidget* container = new QWidget(this);
 		container->setLayout(layout);
+
 		ui->playbackToolBar->addWidget(container);
+
+		connect(player, &QMediaPlayer::durationChanged, this, [=](qint64 duration) {
+			playbackSlider->setRange(0, duration);
+			playerDuration->setText("0 / " + convertMillisecondsToHMS(duration));
+			});
+
+		connect(player, &QMediaPlayer::positionChanged, this, [=](qint64 position) {
+			playbackSlider->setValue(position);
+			playerDuration->setText(convertMillisecondsToHMS(position) + " / " + convertMillisecondsToHMS(player->duration()));
+			});
+
+		connect(player, &QMediaPlayer::mediaStatusChanged, this, [=](QMediaPlayer::MediaStatus status) {
+			if (status == QMediaPlayer::LoadedMedia || status == QMediaPlayer::BufferedMedia) {
+				playerDuration->setText("0 / " + convertMillisecondsToHMS(player->duration()));
+			}
+			});
+
+		connect(playbackSlider, &QSlider::valueChanged, this, [=](int value) {
+			player->setPosition(value);
+			});
 	}
 }
 
