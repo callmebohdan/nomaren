@@ -140,6 +140,7 @@ public:
         toolBar->addSeparator();
         toolBar->addAction(actionDocumentProperties);
         toolBar->addSeparator();
+        toolBar->addAction(actionAbout);
 
         retranslateUi(Nomaren);
 
