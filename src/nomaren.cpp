@@ -204,7 +204,8 @@ void Nomaren::TogglePausePlay() {
 void Nomaren::ShowAboutSection() {
 	QMessageBox::about(this,
 		"About nomaren",
-		"C++ Cross-Platform Media Player (musics, pictures, videos, texts), based on Qt6 framework.");
+		"nomaren is a C++ Cross-Platform Media Player built using the Qt6 framework. "
+		"It supports music, pictures, videos, and text.");
 }
 
 void Nomaren::ShowDocumentProperties() {
