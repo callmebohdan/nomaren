@@ -29,6 +29,8 @@ public:
 	void SetupVolumeSlider();
 	void SetupPlaybackSlider();
 	void DecreaseVolume();
+	void SkipBack();
+	void SkipForward();
 	void ToggleFullScreen();
 	void IncreaseVolume();
 	QString convertMillisecondsToHMS(qint64 milliseconds);
@@ -45,6 +47,20 @@ public:
 	void DisplayText(const QString& filePath);
 	void DisplayVideo(const QString& filePath);
 	void ClosePreviousFile();
+	void HandleKeySpace();
+	void HandleKeyUp();
+	void HandleKeyDown();
+	void HandleKeyLeft();
+	void HandleKeyRight();
+	void HandleKeyF11();
+	void HandleLeftButton();
+	void HandleRightButton();
+	void HandleForwardScroll();
+	void HandleBackwardScroll();
+	void ZoomIn();
+	void ZoomOut();
+	void OpenContextMenu();
+	void scaleImage(double factor);
 
 public slots:
 	void ProcessFileFromCommandLine(const QString& filePath);
@@ -62,6 +78,7 @@ private:
 	QVideoWidget* videoOutput;
 	QWidget* musicWidget;
 	QStackedWidget* stackedWidget;
+	double scaleFactor = 1;
 };
 
 #endif // NOMAREN_HPP

@@ -32,6 +32,7 @@
 #include <qvariant.h>
 #include <qvideowidget.h>
 #include <qwidget.h>
+#include <utility>
 #include "nomaren.hpp"
 #include "ui_nomaren.h"
 
@@ -84,7 +85,8 @@ void Nomaren::SetupActions() {
 	connect(ui->actionMediaPlaybackStart, &QAction::triggered, player, &QMediaPlayer::play);
 	connect(ui->actionMediaPlaybackStop, &QAction::triggered, player, &QMediaPlayer::stop);
 	connect(ui->actionToggleVolume, &QAction::triggered, this, &Nomaren::ToggleVolume);
-	connect(ui->actionAbout, &QAction::triggered, this, &Nomaren::ShowAboutSection);
+	connect(ui->actionZoomIn, &QAction::triggered, this, &Nomaren::ZoomIn);
+	connect(ui->actionZoomOut, &QAction::triggered, this, &Nomaren::ZoomOut);
 	connect(ui->actionDocumentProperties, &QAction::triggered, this, &Nomaren::ShowDocumentProperties);
 	connect(ui->actionAbout, &QAction::triggered, this, &Nomaren::ShowAboutSection);
 }
@@ -184,6 +186,19 @@ void Nomaren::DecreaseVolume() {
 	}
 }
 
+void Nomaren::SkipBack() {
+	if (player->audioOutput() || player->videoOutput()) {
+		qint64 currentPosition = player->position();
+		player->setPosition(std::max(currentPosition - 5000, qint64(0)));
+	}
+}
+
+void Nomaren::SkipForward() {
+	if (player->audioOutput() || player->videoOutput()) {
+		qint64 currentPosition = player->position();
+		player->setPosition(currentPosition + 5000);
+	}
+}
 
 void Nomaren::ToggleFullScreen() {
 	if (!isFullScreen()) {
@@ -211,6 +226,23 @@ void Nomaren::TogglePausePlay() {
 			player->play();
 		}
 	}
+}
+
+void Nomaren::ZoomIn() {
+	scaleImage(1.2);
+}
+
+void Nomaren::ZoomOut() {
+	scaleImage(0.8);
+}
+
+void Nomaren::OpenContextMenu() {
+}
+
+void Nomaren::scaleImage(double factor)
+{
+	scaleFactor *= factor;
+	imageLabel->resize(scaleFactor * imageLabel->pixmap(Qt::ReturnByValue).size());
 }
 
 void Nomaren::ShowAboutSection() {
@@ -407,16 +439,22 @@ void Nomaren::keyPressEvent(QKeyEvent* event) {
 	switch (event->key())
 	{
 	case Qt::Key_Space:
-		TogglePausePlay();
+		HandleKeySpace();
 		break;
 	case Qt::Key_Up:
-		IncreaseVolume();
+		HandleKeyUp();
 		break;
 	case Qt::Key_Down:
-		DecreaseVolume();
+		HandleKeyDown();
+		break;
+	case Qt::Key_Left:
+		HandleKeyLeft();
+		break;
+	case Qt::Key_Right:
+		HandleKeyRight();
 		break;
 	case Qt::Key_F11:
-		ToggleFullScreen();
+		HandleKeyF11();
 		break;
 	default:
 		break;
@@ -429,9 +467,10 @@ void Nomaren::mousePressEvent(QMouseEvent* event) {
 	switch (event->button())
 	{
 	case Qt::LeftButton:
-		TogglePausePlay();
+		HandleLeftButton();
 		break;
 	case Qt::RightButton:
+		HandleRightButton();
 	default:
 		break;
 	}
@@ -444,11 +483,11 @@ void Nomaren::wheelEvent(QWheelEvent* event) {
 
 	if (delta > 0)
 	{
-		IncreaseVolume();
+		HandleForwardScroll();
 	}
 	else if (delta < 0)
 	{
-		DecreaseVolume();
+		HandleBackwardScroll();
 	}
 
 	QMainWindow::wheelEvent(event);
@@ -460,6 +499,68 @@ void Nomaren::ClosePreviousFile() {
 	player->stop();
 	player->setSource(QUrl());
 	player->setPosition(0);
+}
+
+void Nomaren::HandleKeySpace() {
+	// image
+	ZoomIn();
+	// music, video
+	TogglePausePlay();
+}
+
+void Nomaren::HandleKeyUp() {
+	// image
+	ZoomIn();
+	// music, video
+	IncreaseVolume();
+}
+
+void Nomaren::HandleKeyDown() {
+	// image
+	ZoomOut();
+	// music, video
+	DecreaseVolume();
+}
+
+void Nomaren::HandleKeyLeft() {
+	// music, video
+	SkipBack();
+}
+
+void Nomaren::HandleKeyRight() {
+	// music, video
+	SkipForward();
+}
+
+void Nomaren::HandleKeyF11() {
+	// all
+	ToggleFullScreen();
+}
+
+void Nomaren::HandleLeftButton() {
+	// image
+	ZoomIn();
+	// music, video
+	TogglePausePlay();
+}
+
+void Nomaren::HandleRightButton() {
+	// all
+	OpenContextMenu();
+}
+
+void Nomaren::HandleForwardScroll() {
+	// image
+	ZoomIn();
+	// music, video
+	IncreaseVolume();
+}
+
+void Nomaren::HandleBackwardScroll() {
+	// image
+	ZoomOut();
+	// music, video
+	DecreaseVolume();
 }
 
 void Nomaren::DisplayImage(const QString& filePath) {
