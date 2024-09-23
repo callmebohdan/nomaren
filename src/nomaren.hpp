@@ -29,6 +29,8 @@ public:
 	void SetupVolumeSlider();
 	void SetupPlaybackSlider();
 	void DecreaseVolume();
+	void SkipBack();
+	void SkipForward();
 	void ToggleFullScreen();
 	void IncreaseVolume();
 	QString convertMillisecondsToHMS(qint64 milliseconds);

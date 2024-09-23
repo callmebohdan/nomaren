@@ -185,6 +185,19 @@ void Nomaren::DecreaseVolume() {
 	}
 }
 
+void Nomaren::SkipBack() {
+	if (player->audioOutput() || player->videoOutput()) {
+		qint64 currentPosition = player->position();
+		player->setPosition(std::max(currentPosition - 5000, qint64(0)));
+	}
+}
+
+void Nomaren::SkipForward() {
+	if (player->audioOutput() || player->videoOutput()) {
+		qint64 currentPosition = player->position();
+		player->setPosition(currentPosition + 5000);
+	}
+}
 
 void Nomaren::ToggleFullScreen() {
 	if (!isFullScreen()) {
