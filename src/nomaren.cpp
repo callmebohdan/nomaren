@@ -482,11 +482,11 @@ void Nomaren::wheelEvent(QWheelEvent* event) {
 
 	if (delta > 0)
 	{
-		IncreaseVolume();
+		HandleForwardScroll();
 	}
 	else if (delta < 0)
 	{
-		DecreaseVolume();
+		HandleBackwardScroll();
 	}
 
 	QMainWindow::wheelEvent(event);
@@ -547,6 +547,21 @@ void Nomaren::HandleRightButton() {
 	// all
 	OpenContextMenu();
 }
+
+void Nomaren::HandleForwardScroll() {
+	// image
+	ZoomIn();
+	// music, video
+	IncreaseVolume();
+}
+
+void Nomaren::HandleBackwardScroll() {
+	// image
+	ZoomOut();
+	// music, video
+	DecreaseVolume();
+}
+
 void Nomaren::DisplayImage(const QString& filePath) {
 	QImage image(filePath);
 

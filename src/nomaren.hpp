@@ -55,6 +55,8 @@ public:
 	void HandleKeyF11();
 	void HandleLeftButton();
 	void HandleRightButton();
+	void HandleForwardScroll();
+	void HandleBackwardScroll();
 	void ZoomIn();
 	void ZoomOut();
 	void OpenContextMenu();
