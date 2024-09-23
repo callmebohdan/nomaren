@@ -47,6 +47,12 @@ public:
 	void DisplayText(const QString& filePath);
 	void DisplayVideo(const QString& filePath);
 	void ClosePreviousFile();
+	void HandleKeySpace();
+	void HandleKeyUp();
+	void HandleKeyDown();
+	void HandleKeyLeft();
+	void HandleKeyRight();
+	void HandleKeyF11();
 	void ZoomIn();
 	void ZoomOut();
 	void OpenContextMenu();

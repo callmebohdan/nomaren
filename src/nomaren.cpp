@@ -438,16 +438,22 @@ void Nomaren::keyPressEvent(QKeyEvent* event) {
 	switch (event->key())
 	{
 	case Qt::Key_Space:
-		TogglePausePlay();
+		HandleKeySpace();
 		break;
 	case Qt::Key_Up:
-		IncreaseVolume();
+		HandleKeyUp();
 		break;
 	case Qt::Key_Down:
-		DecreaseVolume();
+		HandleKeyDown();
+		break;
+	case Qt::Key_Left:
+		HandleKeyLeft();
+		break;
+	case Qt::Key_Right:
+		HandleKeyRight();
 		break;
 	case Qt::Key_F11:
-		ToggleFullScreen();
+		HandleKeyF11();
 		break;
 	default:
 		break;
@@ -493,6 +499,41 @@ void Nomaren::ClosePreviousFile() {
 	player->setPosition(0);
 }
 
+void Nomaren::HandleKeySpace() {
+	// image
+	ZoomIn();
+	// music, video
+	TogglePausePlay();
+}
+
+void Nomaren::HandleKeyUp() {
+	// image
+	ZoomIn();
+	// music, video
+	IncreaseVolume();
+}
+
+void Nomaren::HandleKeyDown() {
+	// image
+	ZoomOut();
+	// music, video
+	DecreaseVolume();
+}
+
+void Nomaren::HandleKeyLeft() {
+	// music, video
+	SkipBack();
+}
+
+void Nomaren::HandleKeyRight() {
+	// music, video
+	SkipForward();
+}
+
+void Nomaren::HandleKeyF11() {
+	// all
+	ToggleFullScreen();
+}
 void Nomaren::DisplayImage(const QString& filePath) {
 	QImage image(filePath);
 
