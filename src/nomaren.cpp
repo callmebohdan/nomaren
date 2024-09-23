@@ -146,12 +146,14 @@ QString Nomaren::convertMillisecondsToHMS(qint64 milliseconds) {
 	auto totalTime = milliseconds / 1000;
 
 	auto hours = totalTime / 3600;
-	totalTime -= hours * 3600;
-	auto minutes = totalTime / 60;
-	totalTime -= hours * 60;
-	auto seconds = totalTime / 60;
+	auto minutes = (totalTime % 3600) / 60;
+	auto seconds = totalTime % 60;
 
-	return QString::number(hours) + ":" + QString::number(minutes) + ":" + QString::number(seconds);
+	auto hoursString = QString::number(hours).rightJustified(2, '0');
+	auto minutesString = QString::number(minutes).rightJustified(2, '0');
+	auto secondsString = QString::number(seconds).rightJustified(2, '0');
+
+	return hoursString + ":" + minutesString + ":" + secondsString;
 }
 
 void Nomaren::ToggleVolume() {
