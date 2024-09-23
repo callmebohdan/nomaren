@@ -32,6 +32,7 @@
 #include <qvariant.h>
 #include <qvideowidget.h>
 #include <qwidget.h>
+#include <utility>
 #include "nomaren.hpp"
 #include "ui_nomaren.h"
 
