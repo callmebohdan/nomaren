@@ -466,9 +466,10 @@ void Nomaren::mousePressEvent(QMouseEvent* event) {
 	switch (event->button())
 	{
 	case Qt::LeftButton:
-		TogglePausePlay();
+		HandleLeftButton();
 		break;
 	case Qt::RightButton:
+		HandleRightButton();
 	default:
 		break;
 	}
@@ -533,6 +534,18 @@ void Nomaren::HandleKeyRight() {
 void Nomaren::HandleKeyF11() {
 	// all
 	ToggleFullScreen();
+}
+
+void Nomaren::HandleLeftButton() {
+	// image
+	ZoomIn();
+	// music, video
+	TogglePausePlay();
+}
+
+void Nomaren::HandleRightButton() {
+	// all
+	OpenContextMenu();
 }
 void Nomaren::DisplayImage(const QString& filePath) {
 	QImage image(filePath);

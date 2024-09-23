@@ -53,6 +53,8 @@ public:
 	void HandleKeyLeft();
 	void HandleKeyRight();
 	void HandleKeyF11();
+	void HandleLeftButton();
+	void HandleRightButton();
 	void ZoomIn();
 	void ZoomOut();
 	void OpenContextMenu();
