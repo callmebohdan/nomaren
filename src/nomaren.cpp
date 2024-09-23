@@ -234,6 +234,10 @@ void Nomaren::ZoomIn() {
 void Nomaren::ZoomOut() {
 	scaleImage(0.8);
 }
+
+void Nomaren::OpenContextMenu() {
+}
+
 void Nomaren::scaleImage(double factor)
 {
 	scaleFactor *= factor;

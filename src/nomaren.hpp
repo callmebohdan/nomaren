@@ -49,6 +49,7 @@ public:
 	void ClosePreviousFile();
 	void ZoomIn();
 	void ZoomOut();
+	void OpenContextMenu();
 
 public slots:
 	void ProcessFileFromCommandLine(const QString& filePath);
