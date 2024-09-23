@@ -60,6 +60,7 @@ public:
 	void ZoomIn();
 	void ZoomOut();
 	void OpenContextMenu();
+	void scaleImage(double factor);
 
 public slots:
 	void ProcessFileFromCommandLine(const QString& filePath);
@@ -77,6 +78,7 @@ private:
 	QVideoWidget* videoOutput;
 	QWidget* musicWidget;
 	QStackedWidget* stackedWidget;
+	double scaleFactor = 1;
 };
 
 #endif // NOMAREN_HPP
