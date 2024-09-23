@@ -45,6 +45,8 @@ public:
 	void DisplayText(const QString& filePath);
 	void DisplayVideo(const QString& filePath);
 	void ClosePreviousFile();
+	void ZoomIn();
+	void ZoomOut();
 
 public slots:
 	void ProcessFileFromCommandLine(const QString& filePath);

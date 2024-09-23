@@ -84,7 +84,8 @@ void Nomaren::SetupActions() {
 	connect(ui->actionMediaPlaybackStart, &QAction::triggered, player, &QMediaPlayer::play);
 	connect(ui->actionMediaPlaybackStop, &QAction::triggered, player, &QMediaPlayer::stop);
 	connect(ui->actionToggleVolume, &QAction::triggered, this, &Nomaren::ToggleVolume);
-	connect(ui->actionAbout, &QAction::triggered, this, &Nomaren::ShowAboutSection);
+	connect(ui->actionZoomIn, &QAction::triggered, this, &Nomaren::ZoomIn);
+	connect(ui->actionZoomOut, &QAction::triggered, this, &Nomaren::ZoomOut);
 	connect(ui->actionDocumentProperties, &QAction::triggered, this, &Nomaren::ShowDocumentProperties);
 	connect(ui->actionAbout, &QAction::triggered, this, &Nomaren::ShowAboutSection);
 }
@@ -211,6 +212,19 @@ void Nomaren::TogglePausePlay() {
 			player->play();
 		}
 	}
+}
+
+void Nomaren::ZoomIn() {
+	scaleImage(1.2);
+}
+
+void Nomaren::ZoomOut() {
+	scaleImage(0.8);
+}
+void Nomaren::scaleImage(double factor)
+{
+	scaleFactor *= factor;
+	imageLabel->resize(scaleFactor * imageLabel->pixmap(Qt::ReturnByValue).size());
 }
 
 void Nomaren::ShowAboutSection() {
