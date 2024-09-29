@@ -1,5 +1,6 @@
 #include <qapplication.h>
 #include <qstring.h>
+#include <qwindowdefs.h>
 #include "nomaren.hpp"
 
 int main(int argc, char* argv[]) {
