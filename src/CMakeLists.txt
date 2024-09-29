@@ -1,9 +1,5 @@
 ﻿find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets Multimedia MultimediaWidgets)
 
-set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTORCC ON)
-set(CMAKE_AUTOUIC ON)
-
 set(ASSET_FILES ../assets/icon/nomaren.rc)
 set(HEADER_FILES nomaren.hpp)
 set(SOURCE_FILES main.cpp nomaren.cpp)
