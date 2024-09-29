@@ -11,10 +11,10 @@ set(UI_FILES nomaren.ui)
 
 qt6_wrap_ui(UI_HEADERS ${UI_FILES})
 
-add_executable(nomaren ${SOURCE_FILES} ${HEADER_FILES} ${UI_HEADERS} ${ASSET_FILES})
+if (WIN32)
+    qt_add_executable(nomaren WIN32 ${SOURCE_FILES} ${HEADER_FILES} ${UI_HEADERS} ${ASSET_FILES})
+else()
+    qt_add_executable(nomaren ${SOURCE_FILES} ${HEADER_FILES} ${UI_HEADERS} ${ASSET_FILES})
+endif()
 
 target_link_libraries(nomaren PRIVATE Qt6::Core Qt6::Gui Qt6::Multimedia Qt6::Widgets Qt6::MultimediaWidgets)
-
-if (WIN32)
-    set_target_properties(nomaren PROPERTIES WIN64_EXECUTABLE ON LINK_FLAGS "-mwindows")
-endif()
