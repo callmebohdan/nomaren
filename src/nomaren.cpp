@@ -27,7 +27,6 @@
 #include <qstring.h>
 #include <qtextstream.h>
 #include <qtoolbar.h>
-#include <qtypes.h>
 #include <qurl.h>
 #include <qvariant.h>
 #include <qvideowidget.h>
@@ -219,7 +218,7 @@ void Nomaren::ToggleFullScreen() {
 
 void Nomaren::TogglePausePlay() {
 	if (player->audioOutput() || player->videoOutput()) {
-		if (player->isPlaying()) {
+		if (player->playbackState() == QMediaPlayer::PlayingState) {
 			player->pause();
 		}
 		else {

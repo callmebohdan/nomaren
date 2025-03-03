@@ -10,7 +10,6 @@
 #include <qstackedwidget.h>
 #include <qstring.h>
 #include <qtmetamacros.h>
-#include <qtypes.h>
 #include <qvideowidget.h>
 #include <qwidget.h>
 

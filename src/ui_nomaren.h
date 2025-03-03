@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'nomaren.ui'
 **
-** Created by: Qt User Interface Compiler version 6.7.2
+** Created by: Qt User Interface Compiler version 6.4.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -51,44 +51,44 @@ public:
         Nomaren->resize(960, 540);
         actionExit = new QAction(Nomaren);
         actionExit->setObjectName("actionExit");
-        QIcon icon(QIcon::fromTheme(QIcon::ThemeIcon::ApplicationExit));
+        QIcon icon(QIcon::fromTheme(QString::fromUtf8("QIcon::ThemeIcon::ApplicationExit")));
         actionExit->setIcon(icon);
         actionZoomIn = new QAction(Nomaren);
         actionZoomIn->setObjectName("actionZoomIn");
-        QIcon icon1(QIcon::fromTheme(QIcon::ThemeIcon::ZoomIn));
+        QIcon icon1(QIcon::fromTheme(QString::fromUtf8("QIcon::ThemeIcon::ZoomIn")));
         actionZoomIn->setIcon(icon1);
         actionOpenMediaFile = new QAction(Nomaren);
         actionOpenMediaFile->setObjectName("actionOpenMediaFile");
-        QIcon icon2(QIcon::fromTheme(QIcon::ThemeIcon::DocumentOpen));
+        QIcon icon2(QIcon::fromTheme(QString::fromUtf8("QIcon::ThemeIcon::DocumentOpen")));
         actionOpenMediaFile->setIcon(icon2);
         actionZoomOut = new QAction(Nomaren);
         actionZoomOut->setObjectName("actionZoomOut");
-        QIcon icon3(QIcon::fromTheme(QIcon::ThemeIcon::ZoomOut));
+        QIcon icon3(QIcon::fromTheme(QString::fromUtf8("QIcon::ThemeIcon::ZoomOut")));
         actionZoomOut->setIcon(icon3);
         actionMediaPlaybackPause = new QAction(Nomaren);
         actionMediaPlaybackPause->setObjectName("actionMediaPlaybackPause");
-        QIcon icon4(QIcon::fromTheme(QIcon::ThemeIcon::MediaPlaybackPause));
+        QIcon icon4(QIcon::fromTheme(QString::fromUtf8("QIcon::ThemeIcon::MediaPlaybackPause")));
         actionMediaPlaybackPause->setIcon(icon4);
         actionMediaPlaybackPause->setShortcutContext(Qt::ShortcutContext::WindowShortcut);
         actionMediaPlaybackStart = new QAction(Nomaren);
         actionMediaPlaybackStart->setObjectName("actionMediaPlaybackStart");
-        QIcon icon5(QIcon::fromTheme(QIcon::ThemeIcon::MediaPlaybackStart));
+        QIcon icon5(QIcon::fromTheme(QString::fromUtf8("QIcon::ThemeIcon::MediaPlaybackStart")));
         actionMediaPlaybackStart->setIcon(icon5);
         actionMediaPlaybackStop = new QAction(Nomaren);
         actionMediaPlaybackStop->setObjectName("actionMediaPlaybackStop");
-        QIcon icon6(QIcon::fromTheme(QIcon::ThemeIcon::MediaPlaybackStop));
+        QIcon icon6(QIcon::fromTheme(QString::fromUtf8("QIcon::ThemeIcon::MediaPlaybackStop")));
         actionMediaPlaybackStop->setIcon(icon6);
         actionDocumentProperties = new QAction(Nomaren);
         actionDocumentProperties->setObjectName("actionDocumentProperties");
-        QIcon icon7(QIcon::fromTheme(QIcon::ThemeIcon::DocumentProperties));
+        QIcon icon7(QIcon::fromTheme(QString::fromUtf8("QIcon::ThemeIcon::DocumentProperties")));
         actionDocumentProperties->setIcon(icon7);
         actionToggleVolume = new QAction(Nomaren);
         actionToggleVolume->setObjectName("actionToggleVolume");
-        QIcon icon8(QIcon::fromTheme(QIcon::ThemeIcon::AudioVolumeHigh));
+        QIcon icon8(QIcon::fromTheme(QString::fromUtf8("QIcon::ThemeIcon::AudioVolumeHigh")));
         actionToggleVolume->setIcon(icon8);
         actionAbout = new QAction(Nomaren);
         actionAbout->setObjectName("actionAbout");
-        QIcon icon9(QIcon::fromTheme(QIcon::ThemeIcon::HelpAbout));
+        QIcon icon9(QIcon::fromTheme(QString::fromUtf8("QIcon::ThemeIcon::HelpAbout")));
         actionAbout->setIcon(icon9);
         centralwidget = new QWidget(Nomaren);
         centralwidget->setObjectName("centralwidget");
@@ -105,7 +105,7 @@ public:
         menuBar->setGeometry(QRect(0, 0, 960, 22));
         menuFile = new QMenu(menuBar);
         menuFile->setObjectName("menuFile");
-        QSizePolicy sizePolicy(QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Minimum);
+        QSizePolicy sizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(menuFile->sizePolicy().hasHeightForWidth());
@@ -115,10 +115,10 @@ public:
         Nomaren->setMenuBar(menuBar);
         toolBar = new QToolBar(Nomaren);
         toolBar->setObjectName("toolBar");
-        Nomaren->addToolBar(Qt::ToolBarArea::TopToolBarArea, toolBar);
+        Nomaren->addToolBar(Qt::TopToolBarArea, toolBar);
         playbackToolBar = new QToolBar(Nomaren);
         playbackToolBar->setObjectName("playbackToolBar");
-        Nomaren->addToolBar(Qt::ToolBarArea::BottomToolBarArea, playbackToolBar);
+        Nomaren->addToolBar(Qt::BottomToolBarArea, playbackToolBar);
 
         menuBar->addAction(menuFile->menuAction());
         menuBar->addAction(menuHelp->menuAction());
